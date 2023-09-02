@@ -23,11 +23,15 @@ public class Problem {
     @Column(nullable = false, columnDefinition = "true")
     private boolean visible;
 
+    @Convert(converter = CategoryConverter.class)
+    private Category category;
+
     @Builder
-    public Problem(final String id, final String question, final String answer, final boolean visible) {
+    public Problem(final String id, final String question, final String answer, final boolean visible, final Category category) {
         this.id = id;
         this.question = question;
         this.answer = answer;
         this.visible = visible;
+        this.category = category;
     }
 }
