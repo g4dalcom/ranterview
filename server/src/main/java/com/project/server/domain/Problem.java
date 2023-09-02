@@ -20,18 +20,22 @@ public class Problem {
     @Column(nullable = false)
     private String answer;
 
-    @Column(nullable = false, columnDefinition = "true")
-    private boolean visible;
+    @Column(nullable = false)
+    private boolean visible = true;
+
+    @Column(nullable = false)
+    private boolean solved = false;
 
     @Convert(converter = CategoryConverter.class)
     private Category category;
 
     @Builder
-    public Problem(final String id, final String question, final String answer, final boolean visible, final Category category) {
+    public Problem(final String id, final String question, final String answer, final boolean visible, final boolean solved, final Category category) {
         this.id = id;
         this.question = question;
         this.answer = answer;
         this.visible = visible;
+        this.solved = solved;
         this.category = category;
     }
 }
