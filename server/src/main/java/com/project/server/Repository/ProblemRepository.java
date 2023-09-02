@@ -1,4 +1,4 @@
-package com.project.server;
+package com.project.server.Repository;
 
 import com.project.server.domain.Problem;
 import org.springframework.data.jpa.repository.JpaRepository;

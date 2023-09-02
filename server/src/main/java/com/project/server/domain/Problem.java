@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 public class Problem {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private String id;
+    private Long id;
 
     @Column(nullable = false)
     private String question;
@@ -30,7 +30,7 @@ public class Problem {
     private Category category;
 
     @Builder
-    public Problem(final String id, final String question, final String answer, final boolean visible, final boolean solved, final Category category) {
+    public Problem(final Long id, final String question, final String answer, final boolean visible, final boolean solved, final Category category) {
         this.id = id;
         this.question = question;
         this.answer = answer;
