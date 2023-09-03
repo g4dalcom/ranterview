@@ -12,6 +12,8 @@ public record ProblemDto() {
                     .category(category)
                     .question(question)
                     .answer(answer)
+                    .visible(true)
+                    .solved(false)
                     .build();
         }
 
