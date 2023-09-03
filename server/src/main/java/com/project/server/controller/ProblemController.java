@@ -16,7 +16,7 @@ public class ProblemController {
     @PostMapping("/problem")
     public ResponseEntity<Void> addProblem(@RequestBody ProblemDto.Request request) {
         problemService.addProblem(request);
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.ok().build();
     }
 
     @GetMapping("/problem")

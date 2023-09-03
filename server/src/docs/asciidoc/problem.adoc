@@ -1,0 +1,2 @@
+== 문제 등록
+operation::problem-controller-test/create-problem[snippets="http-request,http-response"]
