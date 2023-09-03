@@ -20,12 +20,12 @@ public record ProblemDto() {
     }
 
     @Builder
-    public record Response(Long id, Category category, String question, String answer, boolean visible, boolean solved) {
+    public record Response(Long id, String category, String question, String answer, boolean visible, boolean solved) {
 
         public static Response of(Problem problem) {
             return Response.builder()
                     .id(problem.getId())
-                    .category(problem.getCategory())
+                    .category(problem.getCategory().getDescription())
                     .question(problem.getQuestion())
                     .answer(problem.getAnswer())
                     .visible(problem.isVisible())
