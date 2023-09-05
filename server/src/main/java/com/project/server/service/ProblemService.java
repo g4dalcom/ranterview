@@ -29,4 +29,10 @@ public class ProblemService {
         List<Problem> problems = problemRepository.findAll();
         return problems.stream().map(ProblemDto.Response::of).collect(Collectors.toList());
     }
+
+    @Transactional
+    public List<ProblemDto.Response> getVisibleProblems() {
+        List<Problem> problems = problemRepository.findAllByVisibleIsTrue();
+        return problems.stream().map(ProblemDto.Response::of).collect(Collectors.toList());
+    }
 }
