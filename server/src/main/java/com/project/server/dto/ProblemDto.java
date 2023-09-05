@@ -3,9 +3,7 @@ package com.project.server.dto;
 import com.project.server.domain.Category;
 import com.project.server.domain.Problem;
 import lombok.Builder;
-import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
 public record ProblemDto() {
     @Builder
     public record Request(Category category, String question, String answer) {

@@ -34,4 +34,8 @@ public class Problem {
         this.isSolved = isSolved;
         this.category = category;
     }
+
+    public void updateSolvedCondition() {
+        this.isSolved = !isSolved;
+    }
 }
