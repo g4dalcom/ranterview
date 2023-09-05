@@ -24,8 +24,8 @@ public class ProblemController {
         return ResponseEntity.ok().body(problemService.getAllProblems());
     }
 
-    @GetMapping("/visible")
-    public ResponseEntity<List<ProblemDto.Response>> getVisibleProblems() {
-        return ResponseEntity.ok().body(problemService.getVisibleProblems());
+    @GetMapping("/solving")
+    public ResponseEntity<List<ProblemDto.Response>> getSolvingProblems() {
+        return ResponseEntity.ok().body(problemService.getSolvingProblems());
     }
 }

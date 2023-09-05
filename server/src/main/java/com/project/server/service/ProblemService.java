@@ -1,7 +1,6 @@
 package com.project.server.service;
 
 import com.project.server.Repository.ProblemRepository;
-import com.project.server.domain.Category;
 import com.project.server.domain.Problem;
 import com.project.server.dto.ProblemDto;
 import lombok.RequiredArgsConstructor;
@@ -31,8 +30,8 @@ public class ProblemService {
     }
 
     @Transactional
-    public List<ProblemDto.Response> getVisibleProblems() {
-        List<Problem> problems = problemRepository.findAllByVisibleIsTrue();
+    public List<ProblemDto.Response> getSolvingProblems() {
+        List<Problem> problems = problemRepository.findAllByIsSolvedIsFalse();
         return problems.stream().map(ProblemDto.Response::of).collect(Collectors.toList());
     }
 }

@@ -14,15 +14,14 @@ public record ProblemDto() {
                     .category(category)
                     .question(question)
                     .answer(answer)
-                    .visible(true)
-                    .solved(false)
+                    .isSolved(false)
                     .build();
         }
 
     }
 
     @Builder
-    public record Response(Long id, String category, String question, String answer, boolean visible, boolean solved) {
+    public record Response(Long id, String category, String question, String answer, boolean isSolved) {
 
         public static Response of(Problem problem) {
             return Response.builder()
@@ -30,8 +29,7 @@ public record ProblemDto() {
                     .category(problem.getCategory().getDescription())
                     .question(problem.getQuestion())
                     .answer(problem.getAnswer())
-                    .visible(problem.isVisible())
-                    .solved(problem.isSolved())
+                    .isSolved(problem.isSolved())
                     .build();
         }
     }

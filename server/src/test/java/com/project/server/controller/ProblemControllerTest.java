@@ -4,7 +4,6 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.project.server.common.ControllerTest;
 import com.project.server.domain.Category;
-import com.project.server.domain.Problem;
 import com.project.server.dto.ProblemDto;
 import com.project.server.service.ProblemService;
 import org.junit.jupiter.api.DisplayName;
@@ -100,11 +99,7 @@ class ProblemControllerTest extends ControllerTest {
                                         .type(JsonFieldType.STRING)
                                         .description("답안")
                                         .attributes(field("constraint", "문자열")),
-                                fieldWithPath("[].visible")
-                                        .type(JsonFieldType.BOOLEAN)
-                                        .description("노출여부")
-                                        .attributes(field("constraint", "불리언")),
-                                fieldWithPath("[].solved")
+                                fieldWithPath("[].isSolved")
                                         .type(JsonFieldType.BOOLEAN)
                                         .description("해결여부")
                                         .attributes(field("constraint", "불리언"))
