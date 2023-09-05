@@ -32,12 +32,16 @@ public class ProblemService {
     }
 
     @Transactional
+    public void deleteProblem(Long id) {
+        Problem problem = problemRepository.findById(id).orElseThrow(ProblemNotFoundException::new);
+        problemRepository.delete(problem);
+    }
+
     public List<ProblemDto.Response> getAllProblems() {
         List<Problem> problems = problemRepository.findAll();
         return problems.stream().map(ProblemDto.Response::of).collect(Collectors.toList());
     }
 
-    @Transactional
     public List<ProblemDto.Response> getSolvingProblems() {
         List<Problem> problems = problemRepository.findAllByIsSolvedIsFalse();
         return problems.stream().map(ProblemDto.Response::of).collect(Collectors.toList());

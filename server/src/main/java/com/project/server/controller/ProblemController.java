@@ -27,6 +27,12 @@ public class ProblemController {
         return ResponseEntity.ok().body(problemService.updateSolvedCondition(id));
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteProblem(@PathVariable Long id) {
+        problemService.deleteProblem(id);
+        return ResponseEntity.noContent().build();
+    }
+
     @GetMapping
     public ResponseEntity<List<ProblemDto.Response>> getAllProblems() {
         return ResponseEntity.ok().body(problemService.getAllProblems());
