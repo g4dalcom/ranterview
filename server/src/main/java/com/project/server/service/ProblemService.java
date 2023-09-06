@@ -38,6 +38,11 @@ public class ProblemService {
         problemRepository.delete(problem);
     }
 
+    public ProblemDto.Response getProblem(Long id) {
+        Problem problem = problemRepository.findById(id).orElseThrow(ProblemNotFoundException::new);
+        return ProblemDto.Response.of(problem);
+    }
+
     public List<ProblemDto.Response> getAllProblems(Category category) {
         List<Problem> problems;
         if (category == null) problems = problemRepository.findAll();

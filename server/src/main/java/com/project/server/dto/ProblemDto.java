@@ -15,12 +15,10 @@ public record ProblemDto() {
                     .isSolved(false)
                     .build();
         }
-
     }
 
     @Builder
     public record Response(Long id, String category, String question, String answer, boolean isSolved) {
-
         public static Response of(Problem problem) {
             return Response.builder()
                     .id(problem.getId())

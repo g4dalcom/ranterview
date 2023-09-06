@@ -34,6 +34,11 @@ public class ProblemController {
         return ResponseEntity.noContent().build();
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<ProblemDto.Response> getProblem(@PathVariable Long id) {
+        return ResponseEntity.ok().body(problemService.getProblem(id));
+    }
+
     @GetMapping
     public ResponseEntity<List<ProblemDto.Response>> getAllProblems(@RequestParam(required = false) Category category) {
         return ResponseEntity.ok().body(problemService.getAllProblems(category));
