@@ -1,6 +1,7 @@
 package com.project.server.service;
 
 import com.project.server.Repository.ProblemRepository;
+import com.project.server.domain.Category;
 import com.project.server.domain.Problem;
 import com.project.server.dto.ProblemDto;
 import com.project.server.dto.ProblemSolvedDto;
@@ -37,8 +38,11 @@ public class ProblemService {
         problemRepository.delete(problem);
     }
 
-    public List<ProblemDto.Response> getAllProblems() {
-        List<Problem> problems = problemRepository.findAll();
+    public List<ProblemDto.Response> getAllProblems(Category category) {
+        List<Problem> problems;
+        if (category == null) problems = problemRepository.findAll();
+        else problems = problemRepository.findAll(category);
+
         return problems.stream().map(ProblemDto.Response::of).collect(Collectors.toList());
     }
 

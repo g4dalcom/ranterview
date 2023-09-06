@@ -1,5 +1,6 @@
 package com.project.server.controller;
 
+import com.project.server.domain.Category;
 import com.project.server.dto.ProblemDto;
 import com.project.server.dto.ProblemSolvedDto;
 import com.project.server.service.ProblemService;
@@ -34,8 +35,8 @@ public class ProblemController {
     }
 
     @GetMapping
-    public ResponseEntity<List<ProblemDto.Response>> getAllProblems() {
-        return ResponseEntity.ok().body(problemService.getAllProblems());
+    public ResponseEntity<List<ProblemDto.Response>> getAllProblems(@RequestParam(required = false) Category category) {
+        return ResponseEntity.ok().body(problemService.getAllProblems(category));
     }
 
     @GetMapping("/solving")
