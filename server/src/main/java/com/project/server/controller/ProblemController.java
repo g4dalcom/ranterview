@@ -40,7 +40,7 @@ public class ProblemController {
     }
 
     @GetMapping("/solving")
-    public ResponseEntity<List<ProblemDto.Response>> getSolvingProblems() {
-        return ResponseEntity.ok().body(problemService.getSolvingProblems());
+    public ResponseEntity<List<ProblemDto.Response>> getSolvingProblems(@RequestParam(required = false) Category category) {
+        return ResponseEntity.ok().body(problemService.getSolvingProblems(category));
     }
 }

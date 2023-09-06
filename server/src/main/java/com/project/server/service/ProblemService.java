@@ -46,8 +46,10 @@ public class ProblemService {
         return problems.stream().map(ProblemDto.Response::of).collect(Collectors.toList());
     }
 
-    public List<ProblemDto.Response> getSolvingProblems() {
-        List<Problem> problems = problemRepository.findAllByIsSolvedIsFalse();
+    public List<ProblemDto.Response> getSolvingProblems(Category category) {
+        List<Problem> problems;
+        if (category == null) problems = problemRepository.findAllByIsSolvedIsFalse();
+        else problems = problemRepository.findAllByIsSolvedIsFalse(category);
         return problems.stream().map(ProblemDto.Response::of).collect(Collectors.toList());
     }
 }
