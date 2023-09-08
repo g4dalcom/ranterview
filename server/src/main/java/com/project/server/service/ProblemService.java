@@ -1,6 +1,6 @@
 package com.project.server.service;
 
-import com.project.server.Repository.ProblemRepository;
+import com.project.server.repository.ProblemRepository;
 import com.project.server.domain.Category;
 import com.project.server.domain.Problem;
 import com.project.server.dto.ProblemDto;

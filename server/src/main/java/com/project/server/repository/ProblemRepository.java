@@ -1,4 +1,4 @@
-package com.project.server.Repository;
+package com.project.server.repository;
 
 import com.project.server.domain.Category;
 import com.project.server.domain.Problem;
