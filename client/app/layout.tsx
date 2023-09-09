@@ -3,6 +3,7 @@
 import GlobalStyle from '@/styles/globalStyle';
 import type { Metadata } from 'next';
 import { Noto_Sans_KR } from 'next/font/google';
+import Provider from './components/helper-components/Provider';
 
 const notosanskr = Noto_Sans_KR({
   weight: '400',
@@ -24,7 +25,9 @@ export default function RootLayout({
     <>
       <GlobalStyle />
       <html lang="en">
-        <body className={notosanskr.className}>{children}</body>
+        <body className={notosanskr.className}>
+          <Provider>{children}</Provider>
+        </body>
       </html>
     </>
   );
