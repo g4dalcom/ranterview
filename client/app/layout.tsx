@@ -2,10 +2,10 @@
 
 import GlobalStyle from '@/styles/globalStyle';
 import type { Metadata } from 'next';
-import { Noto_Sans_KR } from 'next/font/google';
+import { Roboto } from 'next/font/google';
 import Provider from './components/helper-components/Provider';
 
-const notosanskr = Noto_Sans_KR({
+const roboto = Roboto({
   weight: '400',
   subsets: ['latin'],
   display: 'swap',
@@ -25,7 +25,7 @@ export default function RootLayout({
     <>
       <GlobalStyle />
       <html lang="en">
-        <body className={notosanskr.className}>
+        <body className={roboto.className}>
           <Provider>{children}</Provider>
         </body>
       </html>
