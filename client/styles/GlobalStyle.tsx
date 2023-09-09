@@ -10,7 +10,6 @@ const style = css`
 
   body {
     font-size: 1.6rem;
-    font-family: 'Pretendard';
     font-weight: 300;
   }
 `;

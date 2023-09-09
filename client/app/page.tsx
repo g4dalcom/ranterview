@@ -5,7 +5,7 @@ import styles from './page.module.css';
 export default function Home() {
   return (
     <main className={styles.main}>
-      <h2>Nya-ong</h2>
+      <h1>오늘의 문제</h1>
     </main>
   );
 }
