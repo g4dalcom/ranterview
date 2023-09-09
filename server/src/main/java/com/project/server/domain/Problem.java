@@ -17,7 +17,7 @@ public class Problem {
     @Column(nullable = false)
     private String question;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 1000)
     private String answer;
 
     @Column(nullable = false)
