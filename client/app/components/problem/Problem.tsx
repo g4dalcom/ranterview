@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
-import { getAllProblems } from '../api/problem';
-import { ProblemType } from '../types';
+import { getAllProblems } from '../../api/problem';
+import { ProblemType } from '../../types';
 
 const Problem = () => {
   const { isLoading, isError, data, error } = useQuery<ProblemType[]>({

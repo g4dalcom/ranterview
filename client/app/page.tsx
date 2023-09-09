@@ -1,6 +1,6 @@
 'use client';
 
-import Problem from './components/Problem';
+import Problem from './components/problem/Problem';
 
 export default function Home() {
   return (
