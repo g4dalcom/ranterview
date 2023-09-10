@@ -11,6 +11,18 @@ const style = css`
   body {
     font-size: 1.6rem;
     font-weight: 300;
+    display: grid;
+    place-items: center;
+    min-height: 100dvh;
+    width: 40%;
+    min-width: 360px;
+    margin: 0 auto;
+  }
+
+  h1 {
+    font-size: 3.6rem;
+    font-weight: 700;
+    text-align: center;
   }
 `;
 
