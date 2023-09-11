@@ -1,6 +1,7 @@
 package com.project.server.controller;
 
 import com.project.server.domain.Category;
+import com.project.server.dto.DailyProblemDto;
 import com.project.server.dto.ProblemDto;
 import com.project.server.dto.ProblemSolvedDto;
 import com.project.server.service.ProblemService;
@@ -51,7 +52,7 @@ public class ProblemController {
     }
 
     @GetMapping("/daily")
-    public ResponseEntity<List<ProblemDto.Response>> getDailyProblems() {
-        return ResponseEntity.ok().body(problemService.getDailyProblems());
+    public ResponseEntity<DailyProblemDto> getDailyProblems() {
+        return ResponseEntity.ok().body(problemService.getDailyProblems2());
     }
 }

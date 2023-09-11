@@ -1,5 +1,6 @@
 package com.project.server.service;
 
+import com.project.server.dto.DailyProblemDto;
 import com.project.server.repository.ProblemRepository;
 import com.project.server.domain.Category;
 import com.project.server.domain.Problem;
@@ -10,10 +11,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -72,5 +70,19 @@ public class ProblemService {
             }
         }
         return dailyList;
+    }
+
+    public DailyProblemDto getDailyProblems2() {
+        HashMap<Category, ProblemDto.Response> dailyList = new HashMap<>();
+
+        for (Category c : Category.values()) {
+            List<Problem> problemList = problemRepository.findAllByIsSolvedIsFalse(c);
+            if (!problemList.isEmpty()) {
+                Problem problem = problemList.get((int) (Math.random() * problemList.size()));
+                dailyList.put(c, ProblemDto.Response.of(problem));
+            }
+        }
+
+        return DailyProblemDto.of(dailyList);
     }
 }
