@@ -69,7 +69,6 @@ public class ProblemService {
                 dailyList.put(c, ProblemDto.Response.of(problem));
             }
         }
-
         return DailyProblemDto.of(dailyList);
     }
 }
