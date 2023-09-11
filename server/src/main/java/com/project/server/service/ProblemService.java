@@ -10,7 +10,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -56,5 +59,18 @@ public class ProblemService {
         if (category == null) problems = problemRepository.findAllByIsSolvedIsFalse();
         else problems = problemRepository.findAllByIsSolvedIsFalse(category);
         return problems.stream().map(ProblemDto.Response::of).collect(Collectors.toList());
+    }
+
+    public List<ProblemDto.Response> getDailyProblems() {
+        List<ProblemDto.Response> dailyList = new ArrayList<>();
+
+        for (Category c : Category.values()) {
+            List<Problem> problemList = problemRepository.findAllByIsSolvedIsFalse(c);
+            if (!problemList.isEmpty()) {
+                Problem problem = problemList.get((int) (Math.random() * problemList.size()));
+                dailyList.add(ProblemDto.Response.of(problem));
+            }
+        }
+        return dailyList;
     }
 }
