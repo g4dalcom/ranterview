@@ -53,6 +53,6 @@ public class ProblemController {
 
     @GetMapping("/daily")
     public ResponseEntity<DailyProblemDto> getDailyProblems() {
-        return ResponseEntity.ok().body(problemService.getDailyProblems2());
+        return ResponseEntity.ok().body(problemService.getDailyProblems());
     }
 }

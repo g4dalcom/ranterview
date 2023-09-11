@@ -59,20 +59,7 @@ public class ProblemService {
         return problems.stream().map(ProblemDto.Response::of).collect(Collectors.toList());
     }
 
-    public List<ProblemDto.Response> getDailyProblems() {
-        List<ProblemDto.Response> dailyList = new ArrayList<>();
-
-        for (Category c : Category.values()) {
-            List<Problem> problemList = problemRepository.findAllByIsSolvedIsFalse(c);
-            if (!problemList.isEmpty()) {
-                Problem problem = problemList.get((int) (Math.random() * problemList.size()));
-                dailyList.add(ProblemDto.Response.of(problem));
-            }
-        }
-        return dailyList;
-    }
-
-    public DailyProblemDto getDailyProblems2() {
+    public DailyProblemDto getDailyProblems() {
         HashMap<Category, ProblemDto.Response> dailyList = new HashMap<>();
 
         for (Category c : Category.values()) {
