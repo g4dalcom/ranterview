@@ -48,7 +48,9 @@ export const Button = styled.button<StyledProps>`
 export const Section = styled.section`
   display: flex;
   flex-direction: column;
+  flex: 4;
   gap: 8px;
+  background-color: #f9f9f9;
 `;
 
 export const ProblemLayout = styled.article`
