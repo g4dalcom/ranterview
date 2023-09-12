@@ -18,14 +18,13 @@ export const MenuText = styled.h2`
   text-align: center;
 `;
 
-export const ULmenu = styled.ul`
+export const ULmenus = styled.ul`
   display: flex;
   flex-direction: column;
   width: 100%;
   gap: 8px;
 
   & li {
-    font-size: 2rem;
     padding: 10px;
     text-align: center;
     cursor: pointer;
