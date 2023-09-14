@@ -9,8 +9,8 @@ const getIcon = (name: string) => (
 
 const ICONS = {
   user: getIcon('ic_user'),
-  ecommerce: getIcon('ic_ecommerce'),
-  analytics: getIcon('ic_analytics'),
+  storage: getIcon('ic_storage'),
+  history: getIcon('ic_history'),
   dashboard: getIcon('ic_dashboard'),
   calendar: getIcon('ic_calendar'),
 };
@@ -21,8 +21,8 @@ const navConfig = [
     items: [
       { title: 'Home', path: '#', icon: ICONS.user },
       { title: 'Daily', path: '#', icon: ICONS.calendar },
-      { title: 'History', path: '#', icon: ICONS.analytics },
-      { title: 'Storage', path: '#', icon: ICONS.ecommerce },
+      { title: 'History', path: '#', icon: ICONS.history },
+      { title: 'Storage', path: '#', icon: ICONS.storage },
     ],
   },
 ];
