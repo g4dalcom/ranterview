@@ -7,7 +7,7 @@ const getIcon = (name: string) => (
   />
 );
 
-const ICONS = {
+export const ICONS = {
   user: getIcon('ic_user'),
   storage: getIcon('ic_storage'),
   history: getIcon('ic_history'),
@@ -18,29 +18,26 @@ const ICONS = {
   home: getIcon('ic_home'),
   expand: getIcon('ic_expand'),
   app: getIcon('ic_app'),
+  profile: getIcon('ic_profile'),
 };
 
 const headerConfig = [
-  {
-    items: [
-      { path: '#', icon: ICONS.search },
-      { path: '#', icon: ICONS.app },
-      { path: '#', icon: ICONS.expand },
-      { path: '#', icon: ICONS.notification },
-    ],
-  },
+  { id: 1, path: '#', icon: ICONS.search },
+  { id: 2, path: '#', icon: ICONS.app },
+  { id: 3, path: '#', icon: ICONS.expand },
+  { id: 4, path: '#', icon: ICONS.notification },
 ];
 
 const navConfig = [
   {
     subheader: 'menu v3.5.0',
     items: [
-      { title: 'Home', path: '#', icon: ICONS.user },
-      { title: 'Daily', path: '#', icon: ICONS.calendar },
-      { title: 'History', path: '#', icon: ICONS.history },
-      { title: 'Storage', path: '#', icon: ICONS.storage },
+      { id: 1, title: 'Home', path: '#', icon: ICONS.user },
+      { id: 2, title: 'Daily', path: '#', icon: ICONS.calendar },
+      { id: 3, title: 'History', path: '#', icon: ICONS.history },
+      { id: 4, title: 'Storage', path: '#', icon: ICONS.storage },
     ],
   },
 ];
 
-export default navConfig;
+export { navConfig, headerConfig };

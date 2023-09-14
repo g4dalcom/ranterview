@@ -1,5 +1,5 @@
 import * as S from './style';
-import navConfig from './NavConfig';
+import { navConfig } from '../LayoutConfig';
 import Link from 'next/link';
 
 const Navbar = () => {
@@ -11,7 +11,7 @@ const Navbar = () => {
             <S.MenuText>{group.subheader}</S.MenuText>
             <S.ULmenus>
               {group.items.map((e) => (
-                <li key={e.title}>
+                <li key={e.id}>
                   <Link href={e.path}>
                     {e.icon}
                     <span>{e.title}</span>

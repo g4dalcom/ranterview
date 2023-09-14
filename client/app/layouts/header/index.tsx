@@ -1,25 +1,25 @@
-import Image from 'next/image';
+import Link from 'next/link';
+import { ICONS, headerConfig } from '../LayoutConfig';
 import * as S from './style';
 
 const Header = () => {
   return (
     <S.Section>
-      <h2>Dashboard</h2>
-      <div>
-        <Image
-          src="../../../public/assets/icons/ic_search.svg"
-          alt="search icon"
-          width={24}
-          height={24}
-        />
-        <span>아이콘</span>
-        <span>아이콘</span>
-        <span>아이콘</span>
-      </div>
-      <div>
-        <span>프로필 사진</span>
-        <span>프로필 이름</span>
-      </div>
+      <h2>Ranterview</h2>
+      <S.HeaderMenuBox>
+        <S.MenuIcons>
+          {headerConfig.map((item) => (
+            <div key={item.id}>
+              <Link href={item.path}>{item.icon}</Link>
+              {item.id === 4 && <span>1</span>}
+            </div>
+          ))}
+        </S.MenuIcons>
+        <S.Profile>
+          {ICONS.profile}
+          <span>g4dalcom</span>
+        </S.Profile>
+      </S.HeaderMenuBox>
     </S.Section>
   );
 };

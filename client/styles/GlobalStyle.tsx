@@ -4,17 +4,16 @@ import resetStyle from './reset';
 const style = css`
   ${resetStyle}
 
-  :root {
-    $main_bg: #2a3447;
-    $soft_bg: #384256;
-    $dark-bg: #222b3c;
-    $main-color: white;
-    $soft-color: #ddd;
-    $dark-color: #2a3447;
-  }
-
   html {
     font-size: 62.5%;
+
+    // Constants
+    --color-main-bg: #2a3447;
+    --color-soft-bg: #384256;
+    --color-dark-bg: #222b3c;
+    --color-main: white;
+    --color-soft: #ddd;
+    --color-dark: #2a3447;
   }
 
   body {
