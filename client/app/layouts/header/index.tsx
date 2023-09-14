@@ -1,6 +1,8 @@
 import Link from 'next/link';
-import { ICONS, headerConfig } from '../LayoutConfig';
+import { headerConfig } from '../LayoutConfig';
 import * as S from './style';
+import ProfileImage from '../../../public/assets/icons/ic_profile.svg';
+import Image from 'next/image';
 
 const Header = () => {
   return (
@@ -9,14 +11,21 @@ const Header = () => {
       <S.HeaderMenuBox>
         <S.MenuIcons>
           {headerConfig.map((item) => (
-            <div key={item.id}>
+            <S.Menu key={item.id}>
               <Link href={item.path}>{item.icon}</Link>
-              {item.id === 4 && <span>1</span>}
-            </div>
+              {item.id === 4 && <S.NotifyCount>1</S.NotifyCount>}
+            </S.Menu>
           ))}
         </S.MenuIcons>
         <S.Profile>
-          {ICONS.profile}
+          <S.ProfileImage>
+            <Image
+              src={ProfileImage}
+              alt="profile image"
+              width={32}
+              height={32}
+            />
+          </S.ProfileImage>
           <span>g4dalcom</span>
         </S.Profile>
       </S.HeaderMenuBox>
