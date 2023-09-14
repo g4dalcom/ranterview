@@ -7,7 +7,9 @@ import Image from 'next/image';
 const Header = () => {
   return (
     <S.Section>
-      <h2>Ranterview</h2>
+      <Link href="/">
+        <S.Logo>Ranterview</S.Logo>
+      </Link>
       <S.HeaderMenuBox>
         <S.MenuIcons>
           {headerConfig.map((item) => (

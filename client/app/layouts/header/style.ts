@@ -9,6 +9,10 @@ export const Section = styled.section`
   padding: 20px;
 `;
 
+export const Logo = styled.h2`
+  cursor: pointer;
+`;
+
 export const HeaderMenuBox = styled.div`
   display: flex;
   gap: 40px;
