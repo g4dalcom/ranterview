@@ -14,3 +14,8 @@ export const getNotSolvedAllProblemWithCategory = async (category: string) => {
   const response = await fetch(`${BASE_URL}/api/problem/solving?${category}`);
   return response.json();
 };
+
+export const getDailyProblems = async () => {
+  const response = await fetch(`${BASE_URL}/api/problem/daily`);
+  return response.json();
+};

@@ -1,12 +1,13 @@
 import * as S from './style';
 import { navConfig } from '../LayoutConfig';
 import Link from 'next/link';
+import { Fragment } from 'react';
 
 const Navbar = () => {
   return (
     <S.Container>
       {navConfig.map((group) => (
-        <>
+        <Fragment key={group.id}>
           <S.MenuText>{group.subheader}</S.MenuText>
           <S.ULmenus>
             {group.items.map((e) => (
@@ -18,7 +19,7 @@ const Navbar = () => {
               </li>
             ))}
           </S.ULmenus>
-        </>
+        </Fragment>
       ))}
     </S.Container>
   );

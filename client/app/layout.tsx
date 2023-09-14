@@ -4,6 +4,9 @@ import GlobalStyle from '@/styles/globalStyle';
 import type { Metadata } from 'next';
 import { Roboto } from 'next/font/google';
 import Provider from './components/helper-components/Provider';
+import Header from './layouts/header';
+import styled from '@emotion/styled';
+import Navbar from './layouts/navbar';
 
 const roboto = Roboto({
   weight: '400',
@@ -26,9 +29,20 @@ export default function RootLayout({
       <GlobalStyle />
       <html lang="en">
         <body className={roboto.className}>
-          <Provider>{children}</Provider>
+          <Header />
+          <Container>
+            <Navbar />
+            <Provider>
+              <main>{children}</main>
+            </Provider>
+          </Container>
         </body>
       </html>
     </>
   );
 }
+
+const Container = styled.section`
+  display: flex;
+  height: calc(100dvh - 76px);
+`;

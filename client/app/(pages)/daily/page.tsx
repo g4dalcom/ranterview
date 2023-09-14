@@ -1,10 +1,12 @@
+'use client';
+
 import { useQuery } from '@tanstack/react-query';
-import { getAllProblems } from '../../api/problem';
+import { getAllProblems, getDailyProblems } from '../../api/problem';
 import { ProblemType } from '../../types';
 import * as S from './style';
 import { useState } from 'react';
 
-const Problem = () => {
+const Daily = () => {
   const [selectedQuestion, setSelectedQuestion] = useState('');
 
   const selectQuestionHandler = (e: React.MouseEvent<HTMLInputElement>) => {
@@ -17,8 +19,8 @@ const Problem = () => {
   };
 
   const { isLoading, isError, data, error } = useQuery<ProblemType[]>({
-    queryKey: ['problem'],
-    queryFn: getAllProblems,
+    queryKey: ['daily'],
+    queryFn: getDailyProblems,
   });
 
   if (isLoading) return <div>Loading...</div>;
@@ -26,9 +28,11 @@ const Problem = () => {
   if (error instanceof Error && isError)
     return <div>Error: {error.message}</div>;
 
+  console.log(data);
+
   return (
     <S.Section>
-      <h1>오늘의 문제</h1>
+      <h1>Daily QA</h1>
       {Array.isArray(data) &&
         data.map((p) => (
           <S.ProblemLayout key={p.id}>
@@ -58,4 +62,4 @@ const Problem = () => {
   );
 };
 
-export default Problem;
+export default Daily;

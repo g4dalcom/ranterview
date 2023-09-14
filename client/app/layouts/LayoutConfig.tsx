@@ -22,20 +22,21 @@ export const ICONS = {
 };
 
 const headerConfig = [
-  { id: 1, path: '#', icon: ICONS.search },
-  { id: 2, path: '#', icon: ICONS.app },
-  { id: 3, path: '#', icon: ICONS.expand },
-  { id: 4, path: '#', icon: ICONS.notification },
+  { id: 1, path: '/', icon: ICONS.search },
+  { id: 2, path: '/', icon: ICONS.app },
+  { id: 3, path: '/', icon: ICONS.expand },
+  { id: 4, path: '/', icon: ICONS.notification },
 ];
 
 const navConfig = [
   {
+    id: 1,
     subheader: 'menu v3.5.0',
     items: [
-      { id: 1, title: 'Home', path: '#', icon: ICONS.user },
-      { id: 2, title: 'Daily', path: '#', icon: ICONS.calendar },
-      { id: 3, title: 'History', path: '#', icon: ICONS.history },
-      { id: 4, title: 'Storage', path: '#', icon: ICONS.storage },
+      { id: 1, title: 'Home', path: '/', icon: ICONS.user },
+      { id: 2, title: 'Daily', path: '/daily', icon: ICONS.calendar },
+      { id: 3, title: 'History', path: '/history', icon: ICONS.history },
+      { id: 4, title: 'Storage', path: '/storage', icon: ICONS.storage },
     ],
   },
 ];

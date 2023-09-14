@@ -48,19 +48,20 @@ export const Button = styled.button<StyledProps>`
 export const Section = styled.section`
   display: flex;
   flex-direction: column;
-  flex: 4;
   gap: 8px;
-  background-color: #f9f9f9;
 `;
 
 export const ProblemLayout = styled.article`
   border-radius: 8px;
-  border: 1px solid rgba(27, 31, 36, 0.15);
+  border: 1px solid var(--color-soft-bg);
+  margin-top: 20px;
+  max-width: var(--size-xl);
+  width: 100%;
+  margin: 0 auto;
 `;
 
 export const QuestionBox = styled.label`
   display: inline-block;
-  width: 100%;
   padding: 12px;
   cursor: pointer;
 
@@ -76,9 +77,7 @@ export const Category = styled.span`
   font-weight: 700;
   margin-right: 1.6rem;
   font-size: 1.6rem;
-  border: 0;
-  background-color: rgb(187, 209, 232);
-  color: ${colors['default']};
+  color: #eaa0a0;
   padding: 0.5rem;
 `;
 
