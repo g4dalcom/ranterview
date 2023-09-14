@@ -49,12 +49,17 @@ export const Section = styled.section`
   display: flex;
   flex-direction: column;
   gap: 8px;
+
+  & h1 {
+    margin-bottom: 40px;
+    text-decoration: underline;
+    text-underline-offset: 12px;
+  }
 `;
 
 export const ProblemLayout = styled.article`
   border-radius: 8px;
   border: 1px solid var(--color-soft-bg);
-  margin-top: 20px;
   max-width: var(--size-xl);
   width: 100%;
   margin: 0 auto;

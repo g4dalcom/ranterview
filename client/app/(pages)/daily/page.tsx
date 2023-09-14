@@ -28,8 +28,6 @@ const Daily = () => {
   if (error instanceof Error && isError)
     return <div>Error: {error.message}</div>;
 
-  console.log(data);
-
   return (
     <S.Section>
       <h1>Daily QA</h1>
