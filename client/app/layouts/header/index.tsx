@@ -1,16 +1,26 @@
 import Image from 'next/image';
+import * as S from './style';
 
 const Header = () => {
   return (
-    <section>
+    <S.Section>
       <h2>Dashboard</h2>
       <div>
-        <div>검색바</div>
+        <Image
+          src="../../../public/assets/icons/ic_search.svg"
+          alt="search icon"
+          width={24}
+          height={24}
+        />
+        <span>아이콘</span>
+        <span>아이콘</span>
+        <span>아이콘</span>
       </div>
       <div>
-        <div>프로필</div>
+        <span>프로필 사진</span>
+        <span>프로필 이름</span>
       </div>
-    </section>
+    </S.Section>
   );
 };
 

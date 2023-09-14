@@ -13,7 +13,23 @@ const ICONS = {
   history: getIcon('ic_history'),
   dashboard: getIcon('ic_dashboard'),
   calendar: getIcon('ic_calendar'),
+  search: getIcon('ic_search'),
+  notification: getIcon('ic_notification'),
+  home: getIcon('ic_home'),
+  expand: getIcon('ic_expand'),
+  app: getIcon('ic_app'),
 };
+
+const headerConfig = [
+  {
+    items: [
+      { path: '#', icon: ICONS.search },
+      { path: '#', icon: ICONS.app },
+      { path: '#', icon: ICONS.expand },
+      { path: '#', icon: ICONS.notification },
+    ],
+  },
+];
 
 const navConfig = [
   {

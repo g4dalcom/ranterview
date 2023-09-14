@@ -7,7 +7,7 @@ import Navbar from './layouts/navbar';
 export default function Home() {
   return (
     <main>
-      <Navbar />
+      {/* <Navbar /> */}
       <Header />
       <Problem />
     </main>
