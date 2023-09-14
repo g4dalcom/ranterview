@@ -7,6 +7,7 @@ export const Section = styled.section`
   background-color: var(--color-main-bg);
   color: var(--color-main);
   padding: 20px;
+  border-bottom: 1px solid var(--color-soft-bg);
 `;
 
 export const Logo = styled.h2`

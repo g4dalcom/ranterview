@@ -19,12 +19,6 @@ const style = css`
   body {
     font-size: 1.6rem;
     font-weight: 300;
-    /* display: grid;
-    min-height: 100dvh; */
-  }
-
-  main {
-    /* display: flex; */
   }
 
   h1 {

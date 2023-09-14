@@ -1,6 +1,6 @@
 'use client';
 
-import Problem from './components/problem/Problem';
+import Main from './components/main/Main';
 import Header from './layouts/header';
 import Navbar from './layouts/navbar';
 import styled from '@emotion/styled';
@@ -10,11 +10,9 @@ export default function Home() {
     <main>
       <Header />
       <Container>
-        <NavContainer>
-          <Navbar />
-        </NavContainer>
+        <Navbar />
         <ContentContainer>
-          <Problem />
+          <Main />
         </ContentContainer>
       </Container>
     </main>
@@ -23,12 +21,12 @@ export default function Home() {
 
 const Container = styled.section`
   display: flex;
-`;
-
-const NavContainer = styled.article`
-  flex: 1;
+  height: calc(100dvh - 76px);
 `;
 
 const ContentContainer = styled.article`
   flex: 4;
+  padding: 20px;
+  background-color: var(--color-main-bg);
+  color: var(--color-main);
 `;

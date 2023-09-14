@@ -1,36 +1,40 @@
 import styled from '@emotion/styled';
 
-export const Section = styled.section`
-  flex: 1;
-  margin-top: 60px;
-`;
-
 export const Container = styled.article`
+  flex: 0.6;
+  background-color: var(--color-main-bg);
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  gap: 16px;
+  gap: 10px;
+  color: var(--color-main);
+  padding: 40px 10px;
+  border-right: 2px solid var(--color-soft-bg);
 `;
 
-export const MenuText = styled.h2`
-  text-align: center;
+export const MenuText = styled.span`
+  font-size: 1.2rem;
+  font-weight: 200;
+  color: var(--color-soft);
 `;
 
 export const ULmenus = styled.ul`
   display: flex;
   flex-direction: column;
-  width: 100%;
   gap: 8px;
 
   & li {
     padding: 10px;
-    text-align: center;
     cursor: pointer;
+    gap: 10px;
+    border-radius: 5px;
+
+    & a {
+      display: flex;
+      gap: 10px;
+    }
 
     &:hover {
-      background-color: antiquewhite;
+      background-color: var(--color-soft-bg);
     }
   }
 `;
