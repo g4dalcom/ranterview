@@ -59,16 +59,16 @@ public class ProblemService {
         return problems.stream().map(ProblemDto.Response::of).collect(Collectors.toList());
     }
 
-    public DailyProblemDto getDailyProblems() {
-        HashMap<Category, ProblemDto.Response> dailyList = new HashMap<>();
+    public List<ProblemDto.Response> getDailyProblems() {
+        List<Problem> dailyList = new ArrayList<>();
 
         for (Category c : Category.values()) {
             List<Problem> problemList = problemRepository.findAllByIsSolvedIsFalse(c);
             if (!problemList.isEmpty()) {
                 Problem problem = problemList.get((int) (Math.random() * problemList.size()));
-                dailyList.put(c, ProblemDto.Response.of(problem));
+                dailyList.add(problem);
             }
         }
-        return DailyProblemDto.of(dailyList);
+        return dailyList.stream().map(ProblemDto.Response::of).collect(Collectors.toList());
     }
 }

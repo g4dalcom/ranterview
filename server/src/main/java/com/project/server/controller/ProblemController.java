@@ -51,7 +51,7 @@ public class ProblemController {
     }
 
     @GetMapping("/daily")
-    public ResponseEntity<DailyProblemDto> getDailyProblems() {
+    public ResponseEntity<List<ProblemDto.Response>> getDailyProblems() {
         return ResponseEntity.ok().body(problemService.getDailyProblems());
     }
 }
