@@ -1,7 +1,9 @@
 package com.project.server.dto;
 
-public record ProblemSolvedDto(Long id, boolean isSolved) {
-    public static ProblemSolvedDto of(Long id, boolean isSolved) {
-        return new ProblemSolvedDto(id, isSolved);
+import java.time.LocalDateTime;
+
+public record ProblemSolvedDto(Long id, boolean isSolved, LocalDateTime completionDate) {
+    public static ProblemSolvedDto of(Long id, boolean isSolved, LocalDateTime completionDate) {
+        return new ProblemSolvedDto(id, isSolved, completionDate);
     }
 }

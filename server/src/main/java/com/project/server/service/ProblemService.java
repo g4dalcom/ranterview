@@ -1,6 +1,5 @@
 package com.project.server.service;
 
-import com.project.server.dto.DailyProblemDto;
 import com.project.server.repository.ProblemRepository;
 import com.project.server.domain.Category;
 import com.project.server.domain.Problem;
@@ -30,7 +29,7 @@ public class ProblemService {
         Problem problem = problemRepository.findById(id).orElseThrow(ProblemNotFoundException::new);
         problem.updateSolvedCondition();
         problemRepository.save(problem);
-        return ProblemSolvedDto.of(id, problem.isSolved());
+        return ProblemSolvedDto.of(id, problem.isSolved(), problem.getCompletionDate());
     }
 
     @Transactional

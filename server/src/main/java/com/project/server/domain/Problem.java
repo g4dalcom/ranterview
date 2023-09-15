@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -26,16 +28,25 @@ public class Problem {
     @Convert(converter = CategoryConverter.class)
     private Category category;
 
+    @Column
+    private LocalDateTime completionDate;
+
     @Builder
-    public Problem(final Long id, final String question, final String answer, final boolean isSolved, final Category category) {
+    public Problem(final Long id, final String question, final String answer, final boolean isSolved, final Category category, final LocalDateTime completionDate) {
         this.id = id;
         this.question = question;
         this.answer = answer;
         this.isSolved = isSolved;
         this.category = category;
+        this.completionDate = completionDate;
     }
 
     public void updateSolvedCondition() {
+        if (!isSolved) {
+            this.completionDate = LocalDateTime.now();
+        } else {
+            this.completionDate = null;
+        }
         this.isSolved = !isSolved;
     }
 }
