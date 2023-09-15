@@ -5,10 +5,10 @@ import com.project.server.domain.Problem;
 
 public class ProblemFixture {
     public static final Problem PROBLEM_1 = new Problem(
-            1L, "질문1", "답안1", false, Category.SERVER
+            1L, "질문1", "답안1", false, Category.SERVER, null
     );
 
     public static final Problem PROBLEM_2 = new Problem(
-            2L, "질문2", "답안2", false, Category.OS
+            2L, "질문2", "답안2", false, Category.OS, null
     );
 }

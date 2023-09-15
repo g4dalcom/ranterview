@@ -5,8 +5,9 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Entity
 @Getter
@@ -29,10 +30,11 @@ public class Problem {
     private Category category;
 
     @Column
-    private LocalDateTime completionDate;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate completionDate;
 
     @Builder
-    public Problem(final Long id, final String question, final String answer, final boolean isSolved, final Category category, final LocalDateTime completionDate) {
+    public Problem(final Long id, final String question, final String answer, final boolean isSolved, final Category category, final LocalDate completionDate) {
         this.id = id;
         this.question = question;
         this.answer = answer;
@@ -43,7 +45,7 @@ public class Problem {
 
     public void updateSolvedCondition() {
         if (!isSolved) {
-            this.completionDate = LocalDateTime.now();
+            this.completionDate = LocalDate.now();
         } else {
             this.completionDate = null;
         }

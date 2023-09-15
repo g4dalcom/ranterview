@@ -75,7 +75,7 @@ class ProblemControllerTest extends ControllerTest {
     @Test
     void getAllProblems() throws Exception {
         makeQuestion();
-        when(problemService.getAllProblems()).thenReturn(List.of(ProblemDto.Response.of(PROBLEM_1), ProblemDto.Response.of(PROBLEM_2)));
+        when(problemService.getAllProblems(null)).thenReturn(List.of(ProblemDto.Response.of(PROBLEM_1), ProblemDto.Response.of(PROBLEM_2)));
 
         ResultActions resultActions = mockMvc.perform(get("/api/problem")
                 .contentType(MediaType.APPLICATION_JSON));
@@ -102,7 +102,11 @@ class ProblemControllerTest extends ControllerTest {
                                 fieldWithPath("[].isSolved")
                                         .type(JsonFieldType.BOOLEAN)
                                         .description("해결여부")
-                                        .attributes(field("constraint", "불리언"))
+                                        .attributes(field("constraint", "불리언")),
+                                fieldWithPath("[].completionDate")
+                                        .type(JsonFieldType.NULL)
+                                        .description("완료일자")
+                                        .attributes(field("constraint", "날짜 형식의 문자열"))
                         )
                 )).andReturn();
 

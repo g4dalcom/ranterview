@@ -4,6 +4,7 @@ import com.project.server.domain.Category;
 import com.project.server.domain.Problem;
 import lombok.Builder;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public record ProblemDto() {
@@ -21,7 +22,7 @@ public record ProblemDto() {
     }
 
     @Builder
-    public record Response(Long id, String category, String question, String answer, boolean isSolved, LocalDateTime completionDate) {
+    public record Response(Long id, String category, String question, String answer, boolean isSolved, LocalDate completionDate) {
         public static Response of(Problem problem) {
             return Response.builder()
                     .id(problem.getId())
