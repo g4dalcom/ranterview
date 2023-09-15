@@ -1,47 +1,14 @@
 import * as S from './style';
 import { ProblemType } from '@/app/types';
-import {
-  DataGrid,
-  GridColDef,
-  GridToolbar,
-  GridEventListener,
-} from '@mui/x-data-grid';
+import { DataGrid, GridToolbar, GridEventListener } from '@mui/x-data-grid';
 import { CustomPagination } from './pagination';
+import { titleColumns } from './tableConfig';
 
 interface DataTableProps {
   problems: ProblemType[];
 }
 
 const DataTable = (problems: DataTableProps) => {
-  const titleColumns: GridColDef[] = [
-    { field: 'id', headerName: '번호', width: 90, disableColumnMenu: true },
-    {
-      field: 'question',
-      headerName: '질문',
-      width: 500,
-      sortable: false,
-      disableColumnMenu: true,
-    },
-    {
-      field: 'category',
-      headerName: '카테고리',
-      width: 120,
-      disableColumnMenu: true,
-    },
-    {
-      field: 'isSolved',
-      headerName: '완료여부',
-      width: 120,
-      disableColumnMenu: true,
-    },
-    {
-      field: 'completionDate',
-      headerName: '완료일',
-      width: 120,
-      disableColumnMenu: true,
-    },
-  ];
-
   const handleClick: GridEventListener<'rowClick'> = (id) => {
     console.log(`${id} clicked`);
   };
