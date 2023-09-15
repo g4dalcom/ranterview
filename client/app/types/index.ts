@@ -4,4 +4,5 @@ export interface ProblemType {
   question: string;
   answer: string;
   isSolved: boolean;
+  completionDate: string | null;
 }
