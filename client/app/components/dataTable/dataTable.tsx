@@ -1,49 +1,85 @@
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
 import * as S from './style';
 import { ProblemType } from '@/app/types';
-import DataRow from './dataRow';
+import {
+  DataGrid,
+  GridColDef,
+  GridToolbar,
+  GridEventListener,
+} from '@mui/x-data-grid';
+import { CustomPagination } from './pagination';
 
-interface Props {
+interface DataTableProps {
   problems: ProblemType[];
 }
 
-const DataTable = (problems: Props) => {
+const DataTable = (problems: DataTableProps) => {
+  const titleColumns: GridColDef[] = [
+    { field: 'id', headerName: '번호', width: 90, disableColumnMenu: true },
+    {
+      field: 'question',
+      headerName: '질문',
+      width: 500,
+      sortable: false,
+      disableColumnMenu: true,
+    },
+    {
+      field: 'category',
+      headerName: '카테고리',
+      width: 120,
+      disableColumnMenu: true,
+    },
+    {
+      field: 'isSolved',
+      headerName: '완료여부',
+      width: 120,
+      disableColumnMenu: true,
+    },
+    {
+      field: 'completionDate',
+      headerName: '완료일',
+      width: 120,
+      disableColumnMenu: true,
+    },
+  ];
+
+  const handleClick: GridEventListener<'rowClick'> = (id) => {
+    console.log(`${id} clicked`);
+  };
+
   return (
     <S.DataTable>
-      <TableContainer className="data_grid" component={Paper}>
-        <Table aria-label="collapsible table">
-          <TableHead>
-            <TableRow>
-              <TableCell />
-              <TableCell className="title_row" align="center">
-                번호
-              </TableCell>
-              <TableCell className="title_row" align="center">
-                질문
-              </TableCell>
-              <TableCell className="title_row" align="center">
-                카테고리
-              </TableCell>
-              <TableCell className="title_row" align="center">
-                완료여부
-              </TableCell>
-              <TableCell className="title_row" align="center">
-                완료일
-              </TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {Array.isArray(problems.problems) &&
-              problems.problems.map((p) => <DataRow key={p.id} row={p} />)}
-          </TableBody>
-        </Table>
-      </TableContainer>
+      <DataGrid
+        className="data_grid"
+        sx={{
+          fontSize: 14,
+          '& .MuiDataGrid-cell:hover': {
+            color: 'primary.main',
+          },
+        }}
+        onRowClick={handleClick}
+        rows={problems.problems}
+        columns={titleColumns}
+        pagination
+        initialState={{
+          pagination: {
+            paginationModel: {
+              pageSize: 10,
+            },
+          },
+        }}
+        slots={{ toolbar: GridToolbar, pagination: CustomPagination }}
+        slotProps={{
+          toolbar: {
+            showQuickFilter: true,
+            quickFilterProps: { debounceMs: 500 },
+          },
+        }}
+        pageSizeOptions={[5]}
+        disableRowSelectionOnClick
+        disableColumnFilter
+        disableDensitySelector
+        disableColumnSelector
+      />
     </S.DataTable>
   );
 };
