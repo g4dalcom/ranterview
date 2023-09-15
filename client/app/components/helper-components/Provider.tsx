@@ -12,7 +12,9 @@ const Provider = ({ children }: Props) => {
       defaultOptions: {
         queries: {
           refetchOnWindowFocus: false,
+          refetchOnMount: false,
           retry: false,
+          // staleTime: (24 - new Date().getHours()) * 60 * 60 * 1000,
         },
       },
     }),
