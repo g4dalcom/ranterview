@@ -1,7 +1,7 @@
 import { patchProblemCondition } from '@/app/api/problem';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
-export const useUpdateProblemCondition = (id: number) => {
+export const useUpdateProblemCondition = () => {
   const queryClient = useQueryClient();
 
   const updateProblemCondition = useMutation({

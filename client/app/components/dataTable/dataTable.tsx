@@ -3,14 +3,19 @@ import { ProblemType } from '@/app/types';
 import { DataGrid, GridToolbar, GridEventListener } from '@mui/x-data-grid';
 import { CustomPagination } from './pagination';
 import { titleColumns } from './tableConfig';
+import { useUpdateProblemCondition } from '@/app/hooks/api/useUpdateProblemCondition';
 
 interface DataTableProps {
   problems: ProblemType[];
 }
 
 const DataTable = (problems: DataTableProps) => {
-  const handleClick: GridEventListener<'rowClick'> = (id) => {
-    console.log(`${id} clicked`);
+  const updateProblemCondition = useUpdateProblemCondition();
+
+  const handleClick: GridEventListener<'cellClick'> = (params) => {
+    if (params.field === 'isSolved') {
+      updateProblemCondition.mutate(Number(params.id));
+    }
   };
 
   return (
@@ -23,7 +28,7 @@ const DataTable = (problems: DataTableProps) => {
             color: 'primary.main',
           },
         }}
-        // onRowClick={handleClick}
+        onCellClick={handleClick}
         rows={problems.problems}
         columns={titleColumns}
         pagination

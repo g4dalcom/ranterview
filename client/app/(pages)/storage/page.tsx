@@ -6,14 +6,12 @@ import { useQuery } from '@tanstack/react-query';
 import { ProblemType } from './../../types/index';
 import { getAllProblems } from '@/app/api/problem';
 import styled from '@emotion/styled';
-import { useUpdateProblemCondition } from '@/app/hooks/api/useUpdateProblemCondition';
 
 const Storage = () => {
   const { isLoading, isError, data, error } = useQuery<ProblemType[]>({
     queryKey: ['allProblems'],
     queryFn: getAllProblems,
   });
-  const updateProblemCondition = useUpdateProblemCondition(1);
 
   if (isLoading) return <div>Loading...</div>;
 
@@ -29,11 +27,7 @@ const Storage = () => {
     <Section>
       <h1>Storage Page</h1>
       <ButtonBox>
-        <Button
-          onClick={() => updateProblemCondition.mutate(1)}
-          size="md"
-          variant="outline"
-        >
+        <Button size="md" variant="outline">
           등록
         </Button>
       </ButtonBox>
