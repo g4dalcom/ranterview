@@ -19,3 +19,11 @@ export const getDailyProblems = async () => {
   const response = await fetch(`${BASE_URL}/api/problem/daily`);
   return response.json();
 };
+
+export const patchProblemCondition = async (id: number) => {
+  const response = await fetch(`${BASE_URL}/api/problem/${id}`, {
+    method: 'PATCH',
+  });
+  console.log('res = ', response);
+  return response.json();
+};

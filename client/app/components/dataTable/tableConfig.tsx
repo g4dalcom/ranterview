@@ -22,19 +22,11 @@ export const titleColumns: GridColDef[] = [
     width: 120,
     disableColumnMenu: true,
     renderCell: (params) => {
-      if (params.row.isSolved) {
-        return (
-          <Button size="sm" variant="outline">
-            완료
-          </Button>
-        );
-      } else {
-        return (
-          <Button size="sm" variant="danger">
-            미완료
-          </Button>
-        );
-      }
+      return (
+        <Button size="sm" variant={params.row.isSolved ? 'outline' : 'danger'}>
+          {params.row.isSolved ? '완료' : '미완료'}
+        </Button>
+      );
     },
   },
   {

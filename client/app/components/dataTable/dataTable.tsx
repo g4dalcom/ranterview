@@ -23,7 +23,7 @@ const DataTable = (problems: DataTableProps) => {
             color: 'primary.main',
           },
         }}
-        onRowClick={handleClick}
+        // onRowClick={handleClick}
         rows={problems.problems}
         columns={titleColumns}
         pagination
