@@ -6,6 +6,7 @@ import { useQuery } from '@tanstack/react-query';
 import { ProblemType } from './../../types/index';
 import { getAllProblems } from '@/app/api/problem';
 import styled from '@emotion/styled';
+import AddProblem from '@/app/components/addProblem/addProblem';
 
 const Storage = () => {
   const { isLoading, isError, data, error } = useQuery<ProblemType[]>({
@@ -32,6 +33,7 @@ const Storage = () => {
         </Button>
       </ButtonBox>
       {Array.isArray(data) && <DataTable problems={data} />}
+      <AddProblem />
     </Section>
   );
 };
