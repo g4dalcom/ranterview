@@ -46,7 +46,7 @@ const DataTable = (problems: DataTableProps) => {
             quickFilterProps: { debounceMs: 500 },
           },
         }}
-        pageSizeOptions={[5]}
+        pageSizeOptions={[10]}
         disableRowSelectionOnClick
         disableColumnFilter
         disableDensitySelector

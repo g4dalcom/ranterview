@@ -29,9 +29,11 @@ export const patchProblemCondition = async (id: number) => {
 };
 
 export const addProblem = async (request: RequestProblemType) => {
-  const reponse = await fetch(`${BASE_URL}/api/problem`, {
+  return await fetch(`${BASE_URL}/api/problem`, {
     method: 'POST',
+    headers: {
+      'Content-type': 'application/json',
+    },
     body: JSON.stringify(request),
   });
-  return reponse.json();
 };

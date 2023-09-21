@@ -8,13 +8,12 @@ type useClickAwayTypes = [
 
 const useClickAway = (): useClickAwayTypes => {
   const [isOpen, setIsOpen] = useState(false);
-  const ref = useRef<HTMLDivElement | HTMLInputElement | null>(null);
+  const ref = useRef<HTMLDivElement | HTMLInputElement>(null);
 
   const toggleHandler = () => setIsOpen((prev) => !prev);
 
   const clickAwayHandler = (e: React.BaseSyntheticEvent | MouseEvent) => {
-    if (ref.current && !ref.current.contains(e.target))
-      setIsOpen((prev) => !prev);
+    if (ref.current && !ref.current.contains(e.target)) setIsOpen(false);
   };
 
   useEffect(() => {

@@ -1,6 +1,18 @@
 import styled from '@emotion/styled';
 
-export const Container = styled.article`
+export const ModalLayout = styled.div`
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.724);
+`;
+
+export const Container = styled.div`
   border: 2px solid var(--color-main);
   border-radius: 4px;
   display: flex;
@@ -25,12 +37,14 @@ export const ContentBox = styled.div`
 
   & input {
     width: calc(100% - 42px);
+    color: var(--color-dark);
   }
 
   & textarea {
     resize: none;
     width: calc(100% - 42px);
     height: 300px;
+    color: var(--color-dark);
   }
 `;
 
@@ -42,7 +56,7 @@ export const CategoryBox = styled.div`
   align-self: flex-end;
 `;
 
-export const ButtonBox = styled.div`
+export const ButtonBox = styled.form`
   display: flex;
   justify-content: center;
 `;
