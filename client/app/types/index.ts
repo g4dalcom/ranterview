@@ -6,3 +6,9 @@ export interface ProblemType {
   isSolved: boolean;
   completionDate: string | null;
 }
+
+export interface RequestProblemType {
+  category: string;
+  question: string;
+  answer: string;
+}

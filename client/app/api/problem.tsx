@@ -1,4 +1,5 @@
 import { BASE_URL } from '../constants';
+import { RequestProblemType } from '../types';
 
 export const getAllProblems = async () => {
   const response = await fetch(`${BASE_URL}/api/problem`);
@@ -24,6 +25,13 @@ export const patchProblemCondition = async (id: number) => {
   const response = await fetch(`${BASE_URL}/api/problem/${id}`, {
     method: 'PATCH',
   });
-  console.log('res = ', response);
   return response.json();
+};
+
+export const addProblem = async (request: RequestProblemType) => {
+  const reponse = await fetch(`${BASE_URL}/api/problem`, {
+    method: 'POST',
+    body: JSON.stringify(request),
+  });
+  return reponse.json();
 };

@@ -2,27 +2,12 @@
 
 import DataTable from '@/app/components/dataTable/dataTable';
 import { Button, Section } from '../daily/style';
-import { useQuery } from '@tanstack/react-query';
-import { ProblemType } from './../../types/index';
-import { getAllProblems } from '@/app/api/problem';
 import styled from '@emotion/styled';
 import AddProblem from '@/app/components/addProblem/addProblem';
+import useAllProblemsQuery from '@/app/hooks/api/useAllProblemsQuery';
 
 const Storage = () => {
-  const { isLoading, isError, data, error } = useQuery<ProblemType[]>({
-    queryKey: ['allProblems'],
-    queryFn: getAllProblems,
-  });
-
-  if (isLoading) return <div>Loading...</div>;
-
-  if (error instanceof Error && isError)
-    return <div>Error: {error.message}</div>;
-
-  if (isLoading) return <div>Loading...</div>;
-
-  if (error instanceof Error && isError)
-    return <div>Error: {error.message}</div>;
+  const data = useAllProblemsQuery();
 
   return (
     <Section>

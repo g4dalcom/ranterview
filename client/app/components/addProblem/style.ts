@@ -1,13 +1,15 @@
 import styled from '@emotion/styled';
 
 export const Container = styled.article`
-  border: 1px solid red;
+  border: 2px solid var(--color-main);
+  border-radius: 4px;
   display: flex;
   flex-direction: column;
   gap: 30px;
   min-width: 340px;
   width: 50%;
   padding: 30px;
+  background-color: var(--color-main-bg);
 `;
 
 export const ContentBox = styled.div`
@@ -22,12 +24,12 @@ export const ContentBox = styled.div`
   }
 
   & input {
-    width: 90%;
+    width: calc(100% - 42px);
   }
 
   & textarea {
     resize: none;
-    width: 90%;
+    width: calc(100% - 42px);
     height: 300px;
   }
 `;
