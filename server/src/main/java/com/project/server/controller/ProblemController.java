@@ -3,6 +3,8 @@ package com.project.server.controller;
 import com.project.server.domain.Category;
 import com.project.server.dto.ProblemDto;
 import com.project.server.dto.ProblemSolvedDto;
+import com.project.server.dto.count.CountResponse;
+import com.project.server.dto.count.ProblemCountDto;
 import com.project.server.service.ProblemService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -52,5 +54,10 @@ public class ProblemController {
     @GetMapping("/daily")
     public ResponseEntity<List<ProblemDto.Response>> getDailyProblems() {
         return ResponseEntity.ok().body(problemService.getDailyProblems());
+    }
+
+    @GetMapping("/count")
+    public ResponseEntity<List<CountResponse>> getProblemCounts() {
+        return ResponseEntity.ok().body(problemService.getProblemCount());
     }
 }

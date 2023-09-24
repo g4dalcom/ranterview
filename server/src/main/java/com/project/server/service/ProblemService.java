@@ -1,5 +1,8 @@
 package com.project.server.service;
 
+import com.project.server.dto.count.CategoryCount;
+import com.project.server.dto.count.CountResponse;
+import com.project.server.dto.count.ProblemCountDto;
 import com.project.server.repository.ProblemRepository;
 import com.project.server.domain.Category;
 import com.project.server.domain.Problem;
@@ -69,5 +72,13 @@ public class ProblemService {
             }
         }
         return dailyList.stream().map(ProblemDto.Response::of).collect(Collectors.toList());
+    }
+
+    public List<CountResponse> getProblemCount() {
+        ArrayList<CountResponse> countList = new ArrayList<>();
+        List<Problem> problemList = problemRepository.findAll();
+        countList.add(CategoryCount.allOf(problemList));
+        countList.add(CategoryCount.solvedOf(problemList));
+        return countList;
     }
 }

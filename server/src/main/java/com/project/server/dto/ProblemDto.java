@@ -5,7 +5,6 @@ import com.project.server.domain.Problem;
 import lombok.Builder;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 public record ProblemDto() {
     @Builder
