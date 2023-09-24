@@ -7,7 +7,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface ProblemRepository extends JpaRepository<Problem, Long> {
     List<Problem> findAllByIsSolvedIsFalse();
@@ -15,6 +14,9 @@ public interface ProblemRepository extends JpaRepository<Problem, Long> {
     List<Problem> findAllByIsSolvedIsFalse(@Param("category") Category category);
     @Query("SELECT p FROM Problem p WHERE p.category =:category")
     List<Problem> findAll(@Param("category") Category category);
+    @Query("SELECT p.category as category, COUNT(p) as count FROM Problem p GROUP BY p.category")
+    List<ProblemCount> getCategoryCount();
 
-    Long countBy();
+    @Query("SELECT p.category as category, COUNT(p) as count FROM Problem p WHERE p.isSolved = true GROUP BY p.category")
+    List<ProblemCount> getSolvedCount();
 }
