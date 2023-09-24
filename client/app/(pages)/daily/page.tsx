@@ -5,9 +5,11 @@ import { getAllProblems, getDailyProblems } from '../../api/problem';
 import { ProblemType } from '../../types';
 import * as S from './style';
 import { useState } from 'react';
+import useDailyQuery from '@/app/hooks/api/useDailyQuery';
 
 const Daily = () => {
   const [selectedQuestion, setSelectedQuestion] = useState('');
+  const data = useDailyQuery();
 
   const selectQuestionHandler = (e: React.MouseEvent<HTMLInputElement>) => {
     const question = (e.target as HTMLInputElement).value;
@@ -17,16 +19,6 @@ const Daily = () => {
       setSelectedQuestion(question);
     }
   };
-
-  const { isLoading, isError, data, error } = useQuery<ProblemType[]>({
-    queryKey: ['daily'],
-    queryFn: getDailyProblems,
-  });
-
-  if (isLoading) return <div>Loading...</div>;
-
-  if (error instanceof Error && isError)
-    return <div>Error: {error.message}</div>;
 
   return (
     <S.Section>
