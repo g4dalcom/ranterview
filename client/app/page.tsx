@@ -1,13 +1,16 @@
 'use client';
 
 import styeld from '@emotion/styled';
+import ProblemCount from './components/problemCount/problemCount';
 
 export default function Home() {
   return (
     <>
       <Container>
         <AiRecommend className="content_box">AI recommend</AiRecommend>
-        <ContentBox className="content_box">box2</ContentBox>
+        <ContentBox className="content_box">
+          <ProblemCount />
+        </ContentBox>
         <ContentBox className="content_box">box3</ContentBox>
         <HistoryCalendar className="content_box">Calendar</HistoryCalendar>
       </Container>

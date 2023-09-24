@@ -29,15 +29,13 @@ export default function RootLayout({
       <GlobalStyle />
       <html lang="en">
         <body className={roboto.className}>
-          <div id="modal">
-            <Header />
-            <Container>
-              <Navbar />
-              <Provider>
-                <main>{children}</main>
-              </Provider>
-            </Container>
-          </div>
+          <Header />
+          <Container>
+            <Navbar />
+            <Provider>
+              <main>{children}</main>
+            </Provider>
+          </Container>
         </body>
       </html>
     </>
