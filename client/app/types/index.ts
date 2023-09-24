@@ -14,17 +14,13 @@ export interface RequestProblemType {
 }
 
 export interface ProblemCountType {
-  problems: CategoryCount;
-  total: number;
-  solved: CategoryCount;
+  categoryCount: CategoryCountType[];
+  solvedCount: CategoryCountType[];
+  categoryTotal: number;
   solvedTotal: number;
 }
 
-export interface CategoryCount {
-  client: number;
-  server: number;
-  network: number;
-  os: number;
-  data_structrue: number;
-  engineering: number;
+export interface CategoryCountType {
+  count: number;
+  category: string;
 }
