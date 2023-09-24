@@ -39,6 +39,6 @@ export const addProblem = async (request: RequestProblemType) => {
 };
 
 export const getProblemCount = async () => {
-  const response = await fetch(`${BASE_URL}/api/prolbem/count`);
+  const response = await fetch(`${BASE_URL}/api/problem/count`);
   return response.json();
 };
