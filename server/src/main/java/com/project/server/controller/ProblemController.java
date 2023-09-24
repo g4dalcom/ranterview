@@ -57,7 +57,7 @@ public class ProblemController {
     }
 
     @GetMapping("/count")
-    public ResponseEntity<List<CountResponse>> getProblemCounts() {
+    public ResponseEntity<CountResponse> getProblemCounts() {
         return ResponseEntity.ok().body(problemService.getProblemCount());
     }
 }

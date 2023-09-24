@@ -74,11 +74,8 @@ public class ProblemService {
         return dailyList.stream().map(ProblemDto.Response::of).collect(Collectors.toList());
     }
 
-    public List<CountResponse> getProblemCount() {
-        ArrayList<CountResponse> countList = new ArrayList<>();
+    public CountResponse getProblemCount() {
         List<Problem> problemList = problemRepository.findAll();
-        countList.add(CategoryCount.allOf(problemList));
-        countList.add(CategoryCount.solvedOf(problemList));
-        return countList;
+        return CountResponse.of(problemList);
     }
 }
