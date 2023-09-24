@@ -2,6 +2,7 @@
 
 import styeld from '@emotion/styled';
 import ProblemCount from './components/problemCount/problemCount';
+import SolvedCount from './components/solvedCount/solvedCount';
 
 export default function Home() {
   return (
@@ -11,7 +12,9 @@ export default function Home() {
         <ContentBox className="content_box">
           <ProblemCount />
         </ContentBox>
-        <ContentBox className="content_box">box3</ContentBox>
+        <ContentBox className="content_box">
+          <SolvedCount />
+        </ContentBox>
         <HistoryCalendar className="content_box">Calendar</HistoryCalendar>
       </Container>
     </>
@@ -33,7 +36,7 @@ export const Container = styeld.div`
 
 export const AiRecommend = styeld.div`
     grid-column: 1 / span 1;
-    grid-row: 1 /span 2;
+    grid-row: 1 /span 1;
 `;
 
 export const ContentBox = styeld.div`
@@ -43,5 +46,5 @@ export const ContentBox = styeld.div`
 
 export const HistoryCalendar = styeld.div`
     grid-column: 2 / span 1;
-    grid-row: 1 / span 4;
+    grid-row: 1 / span 3;
 `;

@@ -44,5 +44,5 @@ export default function RootLayout({
 
 const Container = styled.section`
   display: flex;
-  height: calc(100dvh - 76px);
+  height: calc(100dvh - 77px);
 `;
