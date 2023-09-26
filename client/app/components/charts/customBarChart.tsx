@@ -17,7 +17,7 @@ const CustomBarChart = ({ data }: Props) => {
       <BarChart
         width={700}
         height={200}
-        margin={{ top: 10, right: 10, bottom: 10, left: 10 }}
+        margin={{ top: 10, right: 10, left: 10 }}
         data={data.problemCount}
       >
         <XAxis dataKey="category" />

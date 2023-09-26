@@ -2,15 +2,14 @@ import useProblemCountQuery from '@/app/hooks/api/useProblemCountQuery';
 import CustomBarChart from '../charts/customBarChart';
 import styled from '@emotion/styled';
 import { ProblemCountType } from '@/app/types';
+import ChartBox from './../chartBox/chartBox';
 
 const ProblemCount = () => {
   const countingData: ProblemCountType | any = useProblemCountQuery();
 
   return (
     <>
-      <div>
-        <h2 style={{ textAlign: 'start' }}>Problem Info</h2>
-      </div>
+      <ChartBox title={'Problem Info'} />
       <ChartLayout>
         <DataInfo>
           <DataBox>
