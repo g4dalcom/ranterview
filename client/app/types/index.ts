@@ -25,7 +25,7 @@ export interface CategoryCountType {
   solved: number;
 }
 
-export interface WeeklyCountType {
+export interface RecentlyCountType {
   completionDate: string;
   solvedCount: number;
 }

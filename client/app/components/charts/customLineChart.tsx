@@ -1,4 +1,4 @@
-import { WeeklyCountType } from '@/app/types';
+import { RecentlyCountType } from '@/app/types';
 import dynamic from 'next/dynamic';
 import { Line, Tooltip, XAxis, YAxis } from 'recharts';
 
@@ -8,7 +8,7 @@ const LineChart = dynamic(
 );
 
 interface Props {
-  data: WeeklyCountType | any;
+  data: RecentlyCountType | any;
 }
 
 const CustomLineChart = ({ data }: Props) => {
@@ -16,7 +16,7 @@ const CustomLineChart = ({ data }: Props) => {
     <LineChart
       width={700}
       height={200}
-      data={data.weeklySolvedCount}
+      data={data.recentlySolvedCount}
       margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
     >
       <XAxis dataKey="completionDate" />

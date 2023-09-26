@@ -2,7 +2,7 @@
 
 import styeld from '@emotion/styled';
 import ProblemCount from './components/problemCount/problemCount';
-import WeeklyInfo from './components/weeklyInfo/weeklyInfo';
+import RecentlySolvedInfo from './components/recentlySolvedInfo/recentlySolvedInfo';
 
 export default function Home() {
   return (
@@ -13,7 +13,7 @@ export default function Home() {
           <ProblemCount />
         </ContentBox>
         <ContentBox className="content_box">
-          <WeeklyInfo />
+          <RecentlySolvedInfo />
         </ContentBox>
         <HistoryCalendar className="content_box">Calendar</HistoryCalendar>
       </Container>

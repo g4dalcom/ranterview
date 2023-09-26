@@ -1,23 +1,23 @@
-import useWeeklyCountQuery from '@/app/hooks/api/useWeeklyCountQuery';
+import useRecentlyCountQuery from '@/app/hooks/api/useRecentlyCountQuery';
 import ChartBox from '../chartBox/chartBox';
 import CustomLineChart from '../charts/customLineChart';
 import styled from '@emotion/styled';
-import { WeeklyCountType } from '@/app/types';
+import { RecentlyCountType } from '@/app/types';
 
-const WeeklyInfo = () => {
-  const weeklyCountData: WeeklyCountType | any = useWeeklyCountQuery();
+const RecentlySolvedInfo = () => {
+  const recentlyCountData: RecentlyCountType | any = useRecentlyCountQuery();
 
   return (
     <>
       <ChartBox title={'Weekly Info'} />
       <ChartLayout>
-        <CustomLineChart data={weeklyCountData} />
+        <CustomLineChart data={recentlyCountData} />
       </ChartLayout>
     </>
   );
 };
 
-export default WeeklyInfo;
+export default RecentlySolvedInfo;
 
 const ChartLayout = styled.article`
   display: flex;
