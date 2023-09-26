@@ -42,3 +42,8 @@ export const getProblemCount = async () => {
   const response = await fetch(`${BASE_URL}/api/problem/count`);
   return response.json();
 };
+
+export const getWeeklySolvedCount = async () => {
+  const response = await fetch(`${BASE_URL}/api/problem/weekly/count`);
+  return response.json();
+};

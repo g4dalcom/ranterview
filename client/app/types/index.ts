@@ -24,3 +24,8 @@ export interface CategoryCountType {
   category: string;
   solved: number;
 }
+
+export interface WeeklyCountType {
+  completionDate: string;
+  solvedCount: number;
+}
