@@ -6,7 +6,12 @@ const ProblemCount = () => {
 
   return (
     <>
-      <CustomBarChart data={countingData} />
+      <div>
+        <h2 style={{ textAlign: 'start' }}>Problem Info</h2>
+      </div>
+      <div>
+        <CustomBarChart data={countingData} />
+      </div>
     </>
   );
 };

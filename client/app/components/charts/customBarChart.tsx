@@ -13,7 +13,12 @@ interface Props {
 
 const CustomBarChart = ({ data }: Props) => {
   return (
-    <BarChart width={700} height={200} data={data.categoryCount}>
+    <BarChart
+      width={700}
+      height={200}
+      margin={{ top: 20, right: 20, bottom: 20, left: 20 }}
+      data={data.categoryCount}
+    >
       <XAxis dataKey="category" />
       <Tooltip />
       <Bar dataKey="count" fill="#8884d8" />
