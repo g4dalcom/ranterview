@@ -5,4 +5,5 @@ import com.project.server.domain.Category;
 public interface ProblemCount {
     Category getCategory();
     Long getCount();
+    Long getSolved();
 }

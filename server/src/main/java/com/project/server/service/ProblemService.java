@@ -76,8 +76,7 @@ public class ProblemService {
     public ProblemCountDto getProblemCount() {
         List<Problem> problems = problemRepository.findAll();
         List<ProblemCount> categoryCount = problemRepository.getCategoryCount();
-        List<ProblemCount> solvedCount = problemRepository.getSolvedCount();
 
-        return new ProblemCountDto(categoryCount, solvedCount, problems.size(), problems.stream().filter(Problem::isSolved).count());
+        return new ProblemCountDto(categoryCount, problems.size(), problems.stream().filter(Problem::isSolved).count());
     }
 }

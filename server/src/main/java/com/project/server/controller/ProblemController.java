@@ -55,11 +55,6 @@ public class ProblemController {
         return ResponseEntity.ok().body(problemService.getDailyProblems());
     }
 
-//    @GetMapping("/count")
-//    public ResponseEntity<CountResponse> getProblemCounts() {
-//        return ResponseEntity.ok().body(problemService.getProblemCount());
-//    }
-
     @GetMapping("/count")
     public ResponseEntity<ProblemCountDto> getCount() {
         return ResponseEntity.ok().body(problemService.getProblemCount());
