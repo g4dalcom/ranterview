@@ -14,13 +14,13 @@ export interface RequestProblemType {
 }
 
 export interface ProblemCountType {
-  categoryCount: CategoryCountType[];
-  solvedCount: CategoryCountType[];
-  categoryTotal: number;
-  solvedTotal: number;
+  problemCount: CategoryCountType[];
+  total: number;
+  solved: number;
 }
 
 export interface CategoryCountType {
   count: number;
   category: string;
+  solved: number;
 }
