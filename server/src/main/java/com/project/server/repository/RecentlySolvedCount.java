@@ -2,7 +2,7 @@ package com.project.server.repository;
 
 import java.time.LocalDate;
 
-public interface WeeklyCount {
+public interface RecentlySolvedCount {
     LocalDate getCompletionDate();
     Long getSolvedCount();
 }

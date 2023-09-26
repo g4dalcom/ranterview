@@ -4,7 +4,7 @@ import com.project.server.domain.Category;
 import com.project.server.dto.ProblemDto;
 import com.project.server.dto.ProblemSolvedDto;
 import com.project.server.dto.ProblemCountDto;
-import com.project.server.dto.WeeklyCountDto;
+import com.project.server.dto.RecentlySolvedCountDto;
 import com.project.server.service.ProblemService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -61,8 +61,8 @@ public class ProblemController {
         return ResponseEntity.ok().body(problemService.getProblemCount());
     }
 
-    @GetMapping("/weekly/count")
-    public ResponseEntity<WeeklyCountDto> getWeeklySolvedCount() {
-        return ResponseEntity.ok().body(problemService.getWeeklySolvedCount());
+    @GetMapping("/recently")
+    public ResponseEntity<RecentlySolvedCountDto> getRecentlySolvedCount() {
+        return ResponseEntity.ok().body(problemService.getRecentlySolvedCount());
     }
 }
