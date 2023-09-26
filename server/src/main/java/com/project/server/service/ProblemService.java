@@ -1,6 +1,7 @@
 package com.project.server.service;
 
 import com.project.server.dto.ProblemCountDto;
+import com.project.server.dto.WeeklyCountDto;
 import com.project.server.repository.ProblemCount;
 import com.project.server.repository.ProblemRepository;
 import com.project.server.domain.Category;
@@ -8,6 +9,7 @@ import com.project.server.domain.Problem;
 import com.project.server.dto.ProblemDto;
 import com.project.server.dto.ProblemSolvedDto;
 import com.project.server.exception.ProblemNotFoundException;
+import com.project.server.repository.WeeklyCount;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -78,5 +80,10 @@ public class ProblemService {
         List<ProblemCount> categoryCount = problemRepository.getCategoryCount();
 
         return new ProblemCountDto(categoryCount, problems.size(), problems.stream().filter(Problem::isSolved).count());
+    }
+
+    public WeeklyCountDto getWeeklySolvedCount() {
+        List<WeeklyCount> weeklyCount = problemRepository.getWeeklySolvedCount();
+        return new WeeklyCountDto(weeklyCount);
     }
 }
