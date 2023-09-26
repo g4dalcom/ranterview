@@ -6,13 +6,12 @@ import { WeeklyCountType } from '@/app/types';
 
 const WeeklyInfo = () => {
   const weeklyCountData: WeeklyCountType | any = useWeeklyCountQuery();
-  console.log(weeklyCountData);
 
   return (
     <>
       <ChartBox title={'Weekly Info'} />
       <ChartLayout>
-        <CustomLineChart />
+        <CustomLineChart data={weeklyCountData} />
       </ChartLayout>
     </>
   );
