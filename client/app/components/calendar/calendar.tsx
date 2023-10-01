@@ -2,15 +2,17 @@ import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import useCalendarQuery from '@/app/hooks/api/useCalendarQuery';
 import { CalendarType } from '@/app/types';
+import styled from '@emotion/styled';
 
 const Calendar = () => {
   const data: CalendarType[] | any = useCalendarQuery();
 
   return (
-    <>
+    <Container>
       <FullCalendar
         plugins={[dayGridPlugin]}
         initialView="dayGridMonth"
+        eventClassNames="click-event"
         events={
           Array.isArray(data)
             ? data.map((d: CalendarType) => ({
@@ -20,8 +22,16 @@ const Calendar = () => {
             : ''
         }
       />
-    </>
+    </Container>
   );
 };
 
 export default Calendar;
+
+const Container = styled.article`
+  & .click-event {
+    &:hover {
+      cursor: pointer;
+    }
+  }
+`;
