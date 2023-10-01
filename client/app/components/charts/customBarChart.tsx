@@ -1,6 +1,6 @@
 import { ProblemCountType } from '@/app/types';
 import dynamic from 'next/dynamic';
-import { XAxis, Tooltip, Bar, Legend, ResponsiveContainer } from 'recharts';
+import { XAxis, Tooltip, Bar, ResponsiveContainer } from 'recharts';
 
 const BarChart = dynamic(
   () => import('recharts').then((recharts) => recharts.BarChart),

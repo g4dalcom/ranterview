@@ -1,20 +1,24 @@
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
+import useCalendarQuery from '@/app/hooks/api/useCalendarQuery';
+import { CalendarType } from '@/app/types';
 
 const Calendar = () => {
+  const data: CalendarType[] | any = useCalendarQuery();
+
   return (
     <>
       <FullCalendar
         plugins={[dayGridPlugin]}
         initialView="dayGridMonth"
-        events={[
-          {
-            title: '1개 해결',
-            date: '2023-10-01',
-            backgroundColor: '#82ca9d',
-            editable: true,
-          },
-        ]}
+        events={
+          Array.isArray(data)
+            ? data.map((d: CalendarType) => ({
+                title: `${d.dateInfo.solvedCount}개 해결`,
+                date: d.dateInfo.completionDate,
+              }))
+            : ''
+        }
       />
     </>
   );

@@ -29,3 +29,8 @@ export interface RecentlyCountType {
   completionDate: string;
   solvedCount: number;
 }
+
+export interface CalendarType {
+  dateInfo: RecentlyCountType;
+  problems: ProblemType[];
+}

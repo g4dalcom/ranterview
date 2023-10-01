@@ -47,3 +47,8 @@ export const getRecentlySolvedCount = async () => {
   const response = await fetch(`${BASE_URL}/api/problem/recently`);
   return response.json();
 };
+
+export const getSolvedDateAndCountAndProblems = async () => {
+  const response = await fetch(`${BASE_URL}/api/problem/calendar`);
+  return response.json();
+};
