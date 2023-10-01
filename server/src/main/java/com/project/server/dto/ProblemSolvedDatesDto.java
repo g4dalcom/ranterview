@@ -7,10 +7,10 @@ import lombok.Builder;
 import java.util.List;
 
 @Builder
-public record ProblemSolvedDatesDto(ProblemSolvedDate date, List<Problem> problems) {
+public record ProblemSolvedDatesDto(ProblemSolvedDate dateInfo, List<Problem> problems) {
     public static ProblemSolvedDatesDto of(ProblemSolvedDate date, List<Problem> problems) {
         return ProblemSolvedDatesDto.builder()
-                .date(date)
+                .dateInfo(date)
                 .problems(problems)
                 .build();
     }
