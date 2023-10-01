@@ -14,7 +14,7 @@ const style = css`
     --color-main: white;
     --color-soft: #ddd;
     --color-dark: #2a3447;
-    --fc-today-bg-color: #8884d8 !important;
+    --fc-today-bg-color: #808ba3 !important;
 
     // Responsive
     --size-sm: 480px;
