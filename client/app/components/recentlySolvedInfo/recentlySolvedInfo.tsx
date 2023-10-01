@@ -9,7 +9,7 @@ const RecentlySolvedInfo = () => {
 
   return (
     <>
-      <ChartBox title={'Weekly Info'} />
+      <ChartBox title={'Recently Info'} />
       <ChartLayout>
         <CustomLineChart data={recentlyCountData} />
       </ChartLayout>

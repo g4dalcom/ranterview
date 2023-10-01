@@ -20,7 +20,7 @@ const CustomLineChart = ({ data }: Props) => {
       margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
     >
       <XAxis dataKey="completionDate" />
-      <YAxis />
+      <YAxis allowDecimals={false} tickLine={false} />
       <Tooltip />
       <Line type="monotone" dataKey="solvedCount" stroke="#8884d8" />
     </LineChart>
