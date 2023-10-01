@@ -1,19 +1,17 @@
 package com.project.server.service;
 
-import com.project.server.dto.ProblemCountDto;
-import com.project.server.dto.RecentlySolvedCountDto;
+import com.project.server.dto.*;
 import com.project.server.repository.ProblemCount;
 import com.project.server.repository.ProblemRepository;
 import com.project.server.domain.Category;
 import com.project.server.domain.Problem;
-import com.project.server.dto.ProblemDto;
-import com.project.server.dto.ProblemSolvedDto;
 import com.project.server.exception.ProblemNotFoundException;
-import com.project.server.repository.RecentlySolvedCount;
+import com.project.server.repository.ProblemSolvedDate;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -83,7 +81,26 @@ public class ProblemService {
     }
 
     public RecentlySolvedCountDto getRecentlySolvedCount() {
-        List<RecentlySolvedCount> recentlyCount = problemRepository.getRecentlySolvedCount();
+        List<ProblemSolvedDate> recentlyCount = problemRepository.getSolvedDates();
         return new RecentlySolvedCountDto(recentlyCount);
+    }
+
+    public List<ProblemSolvedDatesDto> getSolvedDates() {
+        ArrayList<ProblemSolvedDatesDto> dataList = new ArrayList<>();
+
+        List<ProblemSolvedDate> date = problemRepository.getSolvedDates();
+        List<Problem> solvedProblems = problemRepository.findAllByIsSolvedIsTrue();
+
+        for (ProblemSolvedDate d : date) {
+            List<Problem> problems = new ArrayList<>();
+            for (Problem p : solvedProblems) {
+                if (p.getCompletionDate().equals(d.getCompletionDate())) {
+                    problems.add(p);
+                }
+            }
+            dataList.add(ProblemSolvedDatesDto.of(d, problems));
+        }
+
+        return dataList;
     }
 }

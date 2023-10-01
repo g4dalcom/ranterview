@@ -1,10 +1,7 @@
 package com.project.server.controller;
 
 import com.project.server.domain.Category;
-import com.project.server.dto.ProblemDto;
-import com.project.server.dto.ProblemSolvedDto;
-import com.project.server.dto.ProblemCountDto;
-import com.project.server.dto.RecentlySolvedCountDto;
+import com.project.server.dto.*;
 import com.project.server.service.ProblemService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -64,5 +61,10 @@ public class ProblemController {
     @GetMapping("/recently")
     public ResponseEntity<RecentlySolvedCountDto> getRecentlySolvedCount() {
         return ResponseEntity.ok().body(problemService.getRecentlySolvedCount());
+    }
+
+    @GetMapping("/calendar")
+    public ResponseEntity<List<ProblemSolvedDatesDto>> getSolvedDates() {
+        return ResponseEntity.ok().body(problemService.getSolvedDates());
     }
 }
