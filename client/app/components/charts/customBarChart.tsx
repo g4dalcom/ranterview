@@ -20,7 +20,7 @@ const CustomBarChart = ({ data }: Props) => {
         margin={{ top: 10, right: 10, left: 10 }}
         data={data.problemCount}
       >
-        <XAxis dataKey="category" />
+        <XAxis dataKey="category" hide={true} />
         <Tooltip contentStyle={{ background: 'transparent', border: 'none' }} />
         <Bar dataKey="count" fill="#8884d8" barSize={20} />
         <Bar dataKey="solved" fill="#82ca9d" barSize={20} />

@@ -2,7 +2,12 @@ import { Button } from '@/app/(pages)/daily/style';
 import { GridColDef } from '@mui/x-data-grid';
 
 export const titleColumns: GridColDef[] = [
-  { field: 'id', headerName: '번호', width: 90, disableColumnMenu: true },
+  {
+    field: 'id',
+    headerName: '번호',
+    width: 90,
+    disableColumnMenu: true,
+  },
   {
     field: 'question',
     headerName: '질문',

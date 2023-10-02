@@ -35,7 +35,7 @@ const DataTable = (problems: DataTableProps) => {
         initialState={{
           pagination: {
             paginationModel: {
-              pageSize: 10,
+              pageSize: 7,
             },
           },
         }}
