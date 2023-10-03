@@ -1,6 +1,7 @@
 package com.project.server.dto;
 
 import com.theokanning.openai.completion.CompletionChoice;
+import com.theokanning.openai.completion.CompletionRequest;
 import com.theokanning.openai.completion.CompletionResult;
 import lombok.Builder;
 
@@ -8,18 +9,22 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public record AiDto() {
-
+    @Builder
     public record Request(String model, String prompt) {
         static final String DEFAULT_MODEL = "gpt-3.5-turbo";
+        static final String DEFAULT_PROMPT = "신입 개발자 면접 질문 하나만 질문이랑 내용 짧게 요약해줘";
 
-        public Request(String prompt) {
-            this(DEFAULT_MODEL, prompt);
+        public static CompletionRequest of(AiDto.Request request) {
+            return CompletionRequest.builder()
+                    .model(DEFAULT_MODEL)
+                    .prompt(DEFAULT_PROMPT)
+                    .build();
         }
     }
 
     @Builder
     public record Response(String id, String object, Long created, String model, List<Message> messages, Usage usage) {
-        public Response of(CompletionResult result) {
+        public static Response of(CompletionResult result) {
             return Response.builder()
                     .id(result.getId())
                     .object(result.getObject())
