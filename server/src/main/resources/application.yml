@@ -17,3 +17,7 @@ spring:
     driver-class-name: org.h2.Driver
     username: sa
     password:
+
+gpt:
+  token: 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
+#  token: ${GPT_API_KEY}
