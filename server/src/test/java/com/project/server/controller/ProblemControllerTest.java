@@ -5,7 +5,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.project.server.common.ControllerTest;
 import com.project.server.domain.Category;
 import com.project.server.dto.ProblemDto;
+import com.project.server.dto.ProblemSolvedDto;
 import com.project.server.service.ProblemService;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,16 +20,16 @@ import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import static com.project.server.configuration.RestDocsConfiguration.field;
-import static com.project.server.fixture.ProblemFixture.PROBLEM_1;
-import static com.project.server.fixture.ProblemFixture.PROBLEM_2;
+import static com.project.server.fixture.ProblemFixture.*;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.when;
 import static org.springframework.restdocs.payload.PayloadDocumentation.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 
 @WebMvcTest(ProblemController.class)
 @AutoConfigureRestDocs
@@ -39,7 +41,8 @@ class ProblemControllerTest extends ControllerTest {
     @Autowired
     ObjectMapper objectMapper;
 
-    private void makeQuestion() {
+    @BeforeEach
+    public void makeQuestion() {
         final ProblemDto.Request request_1 = new ProblemDto.Request(Category.SERVER, "질문1", "답안1");
         final ProblemDto.Request request_2 = new ProblemDto.Request(Category.OS, "질문2", "답안2");
         problemService.addProblem(request_1);
@@ -74,7 +77,6 @@ class ProblemControllerTest extends ControllerTest {
     @DisplayName("모든 질문 목록을 불러온다.")
     @Test
     void getAllProblems() throws Exception {
-        makeQuestion();
         when(problemService.getAllProblems(null)).thenReturn(List.of(ProblemDto.Response.of(PROBLEM_1), ProblemDto.Response.of(PROBLEM_2)));
 
         ResultActions resultActions = mockMvc.perform(get("/api/problem")
@@ -104,7 +106,7 @@ class ProblemControllerTest extends ControllerTest {
                                         .description("해결여부")
                                         .attributes(field("constraint", "불리언")),
                                 fieldWithPath("[].completionDate")
-                                        .type(JsonFieldType.NULL)
+                                        .type(JsonFieldType.STRING)
                                         .description("완료일자")
                                         .attributes(field("constraint", "날짜 형식의 문자열"))
                         )
@@ -115,5 +117,32 @@ class ProblemControllerTest extends ControllerTest {
                 }
         );
         assertThat(response).usingRecursiveComparison().isEqualTo(List.of(ProblemDto.Response.of(PROBLEM_1), ProblemDto.Response.of(PROBLEM_2)));
+    }
+
+    @DisplayName("질문의 해결 여부를 변경한다.")
+    @Test
+    void updateSolvedCondition() throws Exception {
+        given(problemService.updateSolvedCondition(1L)).willReturn(new ProblemSolvedDto(1L, true, LocalDate.now()));
+
+        ResultActions resultActions = mockMvc.perform(patch("/api/problem/1")
+                .contentType(MediaType.APPLICATION_JSON));
+
+        resultActions.andExpect(MockMvcResultMatchers.status().isOk())
+                .andDo(restDocs.document(
+                        responseFields(
+                                fieldWithPath("id")
+                                        .type(JsonFieldType.NUMBER)
+                                        .description("질문 고유 번호")
+                                        .attributes(field("constraint", "양의 정수")),
+                                fieldWithPath("isSolved")
+                                        .type(JsonFieldType.BOOLEAN)
+                                        .description("해결여부")
+                                        .attributes(field("constraint", "불리언")),
+                                fieldWithPath("completionDate")
+                                        .type(JsonFieldType.STRING)
+                                        .description("완료일자")
+                                        .attributes(field("constraint", "날짜 형식의 문자열"))
+                        )
+                ));
     }
 }

@@ -1,3 +1,4 @@
 == 문제 등록
 operation::problem-controller-test/create-problem[snippets="http-request,http-response"]
 operation::problem-controller-test/get-all-problems[snippets="http-request,http-response"]
+operation::problem-controller-test/update-solved-condition[snippets="http-request,http-response"]
