@@ -492,14 +492,14 @@ Content-Length: 318
   "question" : "질문1",
   "answer" : "답안1",
   "isSolved" : false,
-  "completionDate" : "2023-10-12"
+  "completionDate" : "2023-10-13"
 }, {
   "id" : 2,
   "category" : "운영체제",
   "question" : "질문2",
   "answer" : "답안2",
   "isSolved" : false,
-  "completionDate" : "2023-10-12"
+  "completionDate" : "2023-10-13"
 } ]</code></pre>
 </div>
 </div>
@@ -525,8 +525,25 @@ Content-Length: 74
 {
   "id" : 1,
   "isSolved" : true,
-  "completionDate" : "2023-10-12"
+  "completionDate" : "2023-10-13"
 }</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_문제_등록_http_request">HTTP request</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight nowrap"><code class="language-http" data-lang="http">DELETE /api/problem/1 HTTP/1.1
+Host: localhost:8080</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_문제_등록_http_response">HTTP response</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight nowrap"><code class="language-http" data-lang="http">HTTP/1.1 204 No Content</code></pre>
 </div>
 </div>
 </div>
@@ -536,7 +553,7 @@ Content-Length: 74
 <div id="footer">
 <div id="footer-text">
 Version 0.0.1-SNAPSHOT<br>
-Last updated 2023-10-12 20:57:34 +0900
+Last updated 2023-10-13 15:39:00 +0900
 </div>
 </div>
 </body>

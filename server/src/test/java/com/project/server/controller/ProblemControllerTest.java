@@ -145,4 +145,12 @@ class ProblemControllerTest extends ControllerTest {
                         )
                 ));
     }
+
+    @DisplayName("질문을 삭제한다.")
+    @Test
+    void deleteProblem() throws Exception {
+        ResultActions resultActions = mockMvc.perform(delete("/api/problem/1"));
+
+        resultActions.andExpect(MockMvcResultMatchers.status().isNoContent());
+    }
 }
