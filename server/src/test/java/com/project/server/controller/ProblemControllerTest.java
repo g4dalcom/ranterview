@@ -3,6 +3,9 @@ package com.project.server.controller;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.project.server.common.ControllerTest;
+import com.project.server.common.DescriptorCollectors;
+import com.project.server.common.ProblemDescriptor;
+import com.project.server.common.RestDocsDescriptor;
 import com.project.server.domain.Category;
 import com.project.server.dto.ProblemDto;
 import com.project.server.dto.ProblemSolvedDto;
@@ -34,6 +37,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 @WebMvcTest(ProblemController.class)
 @AutoConfigureRestDocs
 class ProblemControllerTest extends ControllerTest {
+    private final RestDocsDescriptor problemFieldHandler = new RestDocsDescriptor(ProblemDescriptor.values());
     private static final ProblemDto.Request NEW_PROBLEM_REQUEST = new ProblemDto.Request(Category.SERVER, "서버 관련 질문", "질문에 대한 답변");
 
     @MockBean
@@ -119,30 +123,7 @@ class ProblemControllerTest extends ControllerTest {
         MvcResult mvcResult = resultActions.andExpect(MockMvcResultMatchers.status().isOk())
                 .andDo(restDocs.document(
                         responseFields(
-                                fieldWithPath("id")
-                                        .type(JsonFieldType.NUMBER)
-                                        .description("질문 고유 번호")
-                                        .attributes(field("constraint", "양의 정수")),
-                                fieldWithPath("category")
-                                        .type(JsonFieldType.STRING)
-                                        .description("문제유형")
-                                        .attributes(field("constraint", "문자열")),
-                                fieldWithPath("question")
-                                        .type(JsonFieldType.STRING)
-                                        .description("문제")
-                                        .attributes(field("constraint", "문자열")),
-                                fieldWithPath(".answer")
-                                        .type(JsonFieldType.STRING)
-                                        .description("답안")
-                                        .attributes(field("constraint", "문자열")),
-                                fieldWithPath("isSolved")
-                                        .type(JsonFieldType.BOOLEAN)
-                                        .description("해결여부")
-                                        .attributes(field("constraint", "불리언")),
-                                fieldWithPath("completionDate")
-                                        .type(JsonFieldType.STRING)
-                                        .description("완료일자")
-                                        .attributes(field("constraint", "날짜 형식의 문자열"))
+                                problemFieldHandler.of(ProblemDescriptor.problem()).collect(DescriptorCollectors::fieldDescriptor)
                         )
                 )).andReturn();
 
