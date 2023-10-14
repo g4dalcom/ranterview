@@ -4,3 +4,4 @@ operation::problem-controller-test/update-solved-condition[snippets="http-reques
 operation::problem-controller-test/delete-problem[snippets="http-request,http-response"]
 operation::problem-controller-test/get-all-problems[snippets="http-request,http-response"]
 operation::problem-controller-test/get-problem[snippets="http-request,http-response"]
+operation::problem-controller-test/get-solved-problems[snippets="http-request,http-response"]

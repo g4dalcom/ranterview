@@ -109,6 +109,50 @@ class ProblemControllerTest extends ControllerTest {
         resultActions.andExpect(MockMvcResultMatchers.status().isNoContent());
     }
 
+    @DisplayName("특정 질문 1개의 데이터를 불러온다.")
+    @Test
+    void getProblem() throws Exception {
+        when(problemService.getProblem(1L)).thenReturn(ProblemDto.Response.of(PROBLEM_1));
+
+        ResultActions resultActions = mockMvc.perform(get("/api/problem/1"));
+
+        MvcResult mvcResult = resultActions.andExpect(MockMvcResultMatchers.status().isOk())
+                .andDo(restDocs.document(
+                        responseFields(
+                                fieldWithPath("id")
+                                        .type(JsonFieldType.NUMBER)
+                                        .description("질문 고유 번호")
+                                        .attributes(field("constraint", "양의 정수")),
+                                fieldWithPath("category")
+                                        .type(JsonFieldType.STRING)
+                                        .description("문제유형")
+                                        .attributes(field("constraint", "문자열")),
+                                fieldWithPath("question")
+                                        .type(JsonFieldType.STRING)
+                                        .description("문제")
+                                        .attributes(field("constraint", "문자열")),
+                                fieldWithPath(".answer")
+                                        .type(JsonFieldType.STRING)
+                                        .description("답안")
+                                        .attributes(field("constraint", "문자열")),
+                                fieldWithPath("isSolved")
+                                        .type(JsonFieldType.BOOLEAN)
+                                        .description("해결여부")
+                                        .attributes(field("constraint", "불리언")),
+                                fieldWithPath("completionDate")
+                                        .type(JsonFieldType.STRING)
+                                        .description("완료일자")
+                                        .attributes(field("constraint", "날짜 형식의 문자열"))
+                        )
+                )).andReturn();
+
+        final ProblemDto.Response response = objectMapper.readValue(
+                mvcResult.getResponse().getContentAsString(), new TypeReference<>() {
+                }
+        );
+        assertThat(response).usingRecursiveComparison().isEqualTo(ProblemDto.Response.of(PROBLEM_1));
+    }
+
     @DisplayName("모든 질문 목록을 불러온다.")
     @Test
     void getAllProblems() throws Exception {
@@ -154,47 +198,49 @@ class ProblemControllerTest extends ControllerTest {
         assertThat(response).usingRecursiveComparison().isEqualTo(List.of(ProblemDto.Response.of(PROBLEM_1), ProblemDto.Response.of(PROBLEM_2)));
     }
 
-    @DisplayName("특정 질문 1개의 데이터를 불러온다.")
+    @DisplayName("완료한 질문 목록을 불러온다.")
     @Test
-    void getProblem() throws Exception {
-        when(problemService.getProblem(1L)).thenReturn(ProblemDto.Response.of(PROBLEM_1));
+    void getSolvedProblems() throws Exception {
+        when(problemService.getSolvingProblems(null))
+                .thenReturn(List.of(ProblemDto.Response.of(SOLVED_PROBLEM_1), ProblemDto.Response.of(SOLVED_PROBLEM_2)));
 
-        ResultActions resultActions = mockMvc.perform(get("/api/problem/1"));
+        ResultActions resultActions = mockMvc.perform(get("/api/problem/solving")
+                .contentType(MediaType.APPLICATION_JSON));
 
         MvcResult mvcResult = resultActions.andExpect(MockMvcResultMatchers.status().isOk())
                 .andDo(restDocs.document(
                         responseFields(
-                                fieldWithPath("id")
+                                fieldWithPath("[].id")
                                         .type(JsonFieldType.NUMBER)
                                         .description("질문 고유 번호")
                                         .attributes(field("constraint", "양의 정수")),
-                                fieldWithPath("category")
+                                fieldWithPath("[].category")
                                         .type(JsonFieldType.STRING)
                                         .description("문제유형")
                                         .attributes(field("constraint", "문자열")),
-                                fieldWithPath("question")
+                                fieldWithPath("[].question")
                                         .type(JsonFieldType.STRING)
                                         .description("문제")
                                         .attributes(field("constraint", "문자열")),
-                                fieldWithPath(".answer")
+                                fieldWithPath("[].answer")
                                         .type(JsonFieldType.STRING)
                                         .description("답안")
                                         .attributes(field("constraint", "문자열")),
-                                fieldWithPath("isSolved")
+                                fieldWithPath("[].isSolved")
                                         .type(JsonFieldType.BOOLEAN)
                                         .description("해결여부")
                                         .attributes(field("constraint", "불리언")),
-                                fieldWithPath("completionDate")
+                                fieldWithPath("[].completionDate")
                                         .type(JsonFieldType.STRING)
                                         .description("완료일자")
                                         .attributes(field("constraint", "날짜 형식의 문자열"))
                         )
                 )).andReturn();
 
-        final ProblemDto.Response response = objectMapper.readValue(
+        final List<ProblemDto.Response> response = objectMapper.readValue(
                 mvcResult.getResponse().getContentAsString(), new TypeReference<>() {
                 }
         );
-        assertThat(response).usingRecursiveComparison().isEqualTo(ProblemDto.Response.of(PROBLEM_1));
+        assertThat(response).usingRecursiveComparison().isEqualTo(List.of(ProblemDto.Response.of(SOLVED_PROBLEM_1), ProblemDto.Response.of(SOLVED_PROBLEM_2)));
     }
 }
