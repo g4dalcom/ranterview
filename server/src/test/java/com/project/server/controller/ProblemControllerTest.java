@@ -10,7 +10,6 @@ import com.project.server.domain.Category;
 import com.project.server.dto.ProblemDto;
 import com.project.server.dto.ProblemSolvedDto;
 import com.project.server.service.ProblemService;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +22,6 @@ import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
-import java.time.LocalDate;
 import java.util.List;
 
 import static com.project.server.configuration.RestDocsConfiguration.field;
@@ -45,21 +43,15 @@ class ProblemControllerTest extends ControllerTest {
     @Autowired
     ObjectMapper objectMapper;
 
-    @BeforeEach
-    public void makeQuestion() {
-        final ProblemDto.Request request_1 = new ProblemDto.Request(Category.SERVER, "질문1", "답안1");
-        final ProblemDto.Request request_2 = new ProblemDto.Request(Category.OS, "질문2", "답안2");
-        problemService.addProblem(request_1);
-        problemService.addProblem(request_2);
-    }
-
     @DisplayName("새로운 질문 등록")
     @Test
     void createProblem() throws Exception {
+        // when
         ResultActions resultActions = mockMvc.perform(post("/api/problem")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(NEW_PROBLEM_REQUEST)));
 
+        // then
         resultActions.andExpect(MockMvcResultMatchers.status().isOk())
                 .andDo(restDocs.document(
                         requestFields(
@@ -81,11 +73,15 @@ class ProblemControllerTest extends ControllerTest {
     @DisplayName("질문의 해결 여부를 변경한다.")
     @Test
     void updateSolvedCondition() throws Exception {
-        given(problemService.updateSolvedCondition(1L)).willReturn(new ProblemSolvedDto(1L, true, LocalDate.now()));
+        // given
+        ProblemDto.Response problem = ProblemDto.Response.of(PROBLEM_1);
+        given(problemService.updateSolvedCondition(problem.id())).willReturn(new ProblemSolvedDto(problem.id(), problem.isSolved(), problem.completionDate()));
 
-        ResultActions resultActions = mockMvc.perform(patch("/api/problem/1")
+        // when
+        ResultActions resultActions = mockMvc.perform(patch("/api/problem/" + problem.id())
                 .contentType(MediaType.APPLICATION_JSON));
 
+        // then
         resultActions.andExpect(MockMvcResultMatchers.status().isOk())
                 .andDo(restDocs.document(
                         responseFields(
