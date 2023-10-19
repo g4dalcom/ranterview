@@ -23,7 +23,6 @@ import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static com.project.server.configuration.RestDocsConfiguration.field;
 import static com.project.server.fixture.ProblemFixture.*;
@@ -225,7 +224,7 @@ class ProblemControllerTest extends ControllerTest {
     @DisplayName("데일리 랜덤 문제를 카테고리 별로 1개씩 불러온다.")
     @Test
     void getDailyProblems() throws Exception {
-        when(problemService.getDailyProblems()).thenReturn(DAILY_PROBLEMS());
+        when(problemService.getDailyProblems()).thenReturn(PROBLEMS_INCLUDES_ALL_CATEGORIES());
 
         ResultActions resultActions = mockMvc.perform(get("/api/problem/daily")
                 .contentType(MediaType.APPLICATION_JSON));
@@ -259,6 +258,40 @@ class ProblemControllerTest extends ControllerTest {
                                         .attributes(field("constraint", "날짜 형식의 문자열"))
                         )
                 ));
-        System.out.println(DAILY_PROBLEMS());
+    }
+
+    @DisplayName("전체 질문의 개수와 카테고리별 질문의 개수를 불러온다.")
+    @Test
+    void getProblemCount() throws Exception {
+        when(problemService.getProblemCount()).thenReturn(PROBLEM_COUNT());
+
+        ResultActions resultActions = mockMvc.perform(get("/api/problem/count")
+                .contentType(MediaType.APPLICATION_JSON));
+
+        resultActions.andExpect(MockMvcResultMatchers.status().isOk())
+                .andDo(restDocs.document(
+                        responseFields(
+                                fieldWithPath("problemCount.[]count")
+                                        .type(JsonFieldType.NUMBER)
+                                        .description("카테고리별 전체 질문 개수")
+                                        .attributes(field("constraint", "count: 양의 정수")),
+                                fieldWithPath("problemCount.[]solved")
+                                        .type(JsonFieldType.NUMBER)
+                                        .description("카테고리별 해결한 질문 개수")
+                                        .attributes(field("constraint", "양의 정수")),
+                                fieldWithPath("problemCount.[]category")
+                                        .type(JsonFieldType.STRING)
+                                        .description("카테고리")
+                                        .attributes(field("constraint", "문자열")),
+                                fieldWithPath("total")
+                                        .type(JsonFieldType.NUMBER)
+                                        .description("전체 질문 개수")
+                                        .attributes(field("constraint", "양의 정수")),
+                                fieldWithPath("solved")
+                                        .type(JsonFieldType.NUMBER)
+                                        .description("해결한 질문 개수")
+                                        .attributes(field("constraint", "양의 정수"))
+                        )
+                ));
     }
 }
