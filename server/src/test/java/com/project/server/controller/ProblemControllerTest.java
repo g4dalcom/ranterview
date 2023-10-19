@@ -23,6 +23,7 @@ import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static com.project.server.configuration.RestDocsConfiguration.field;
 import static com.project.server.fixture.ProblemFixture.*;
@@ -219,5 +220,45 @@ class ProblemControllerTest extends ControllerTest {
                 }
         );
         assertThat(response).usingRecursiveComparison().isEqualTo(List.of(ProblemDto.Response.of(SOLVED_PROBLEM_1), ProblemDto.Response.of(SOLVED_PROBLEM_2)));
+    }
+
+    @DisplayName("데일리 랜덤 문제를 카테고리 별로 1개씩 불러온다.")
+    @Test
+    void getDailyProblems() throws Exception {
+        when(problemService.getDailyProblems()).thenReturn(DAILY_PROBLEMS());
+
+        ResultActions resultActions = mockMvc.perform(get("/api/problem/daily")
+                .contentType(MediaType.APPLICATION_JSON));
+
+        resultActions.andExpect(MockMvcResultMatchers.status().isOk())
+                .andDo(restDocs.document(
+                        responseFields(
+                                fieldWithPath("[].id")
+                                        .type(JsonFieldType.NUMBER)
+                                        .description("질문 고유 번호")
+                                        .attributes(field("constraint", "양의 정수")),
+                                fieldWithPath("[].category")
+                                        .type(JsonFieldType.STRING)
+                                        .description("문제유형")
+                                        .attributes(field("constraint", "문자열")),
+                                fieldWithPath("[].question")
+                                        .type(JsonFieldType.STRING)
+                                        .description("문제")
+                                        .attributes(field("constraint", "문자열")),
+                                fieldWithPath("[].answer")
+                                        .type(JsonFieldType.STRING)
+                                        .description("답안")
+                                        .attributes(field("constraint", "문자열")),
+                                fieldWithPath("[].isSolved")
+                                        .type(JsonFieldType.BOOLEAN)
+                                        .description("해결여부")
+                                        .attributes(field("constraint", "불리언")),
+                                fieldWithPath("[].completionDate")
+                                        .type(JsonFieldType.STRING)
+                                        .description("완료일자")
+                                        .attributes(field("constraint", "날짜 형식의 문자열"))
+                        )
+                ));
+        System.out.println(DAILY_PROBLEMS());
     }
 }
