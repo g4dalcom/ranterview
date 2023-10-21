@@ -4,12 +4,15 @@ import com.project.server.domain.Category;
 import com.project.server.domain.Problem;
 import com.project.server.dto.ProblemCountDto;
 import com.project.server.dto.ProblemDto;
+import com.project.server.dto.RecentlySolvedCountDto;
 import com.project.server.repository.ProblemCount;
+import com.project.server.repository.ProblemSolvedDate;
 import org.springframework.data.projection.ProjectionFactory;
 import org.springframework.data.projection.SpelAwareProxyProjectionFactory;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class ProblemFixture {
@@ -29,7 +32,8 @@ public class ProblemFixture {
         List<ProblemDto.Response> problemList = new ArrayList<>();
         long number = 1L;
         for (Category c : Category.values()) {
-            problemList.add(ProblemDto.Response.of(new Problem(number++, c + " 해결한 질문", c + " 해결한 답안", true, c, LocalDate.now())));
+            long randomize = (long) (Math.random() * 7);
+            problemList.add(ProblemDto.Response.of(new Problem(number++, c + " 해결한 질문", c + " 해결한 답안", true, c, LocalDate.now().minusDays(randomize))));
             problemList.add(ProblemDto.Response.of(new Problem(number++, c + " 질문", c + " 답안", false, c, LocalDate.now())));
         }
         return problemList;
@@ -62,5 +66,26 @@ public class ProblemFixture {
         }
 
         return new ProblemCountDto(problemCountList, total, solvedTotal);
+    }
+
+    public static RecentlySolvedCountDto RECENTLY_DATE_AND_COUNT() {
+        List<ProblemDto.Response> problemList = PROBLEMS_INCLUDES_ALL_CATEGORIES();
+        HashMap<LocalDate, Long> map = new HashMap<>();
+
+        for (ProblemDto.Response response : problemList) {
+            map.put(response.completionDate(), map.getOrDefault(response.completionDate(), 0L) + 1L);
+        }
+
+        List<ProblemSolvedDate> dateList = new ArrayList<>();
+        ProjectionFactory factory = new SpelAwareProxyProjectionFactory();
+        for (LocalDate key : map.keySet()) {
+            ProblemSolvedDate problemSolvedDate = factory.createProjection(ProblemSolvedDate.class);
+            problemSolvedDate.setCompletionDate(key);
+            problemSolvedDate.setSolvedCount(map.get(key));
+
+            dateList.add(problemSolvedDate);
+        }
+
+        return new RecentlySolvedCountDto(dateList);
     }
 }

@@ -294,4 +294,27 @@ class ProblemControllerTest extends ControllerTest {
                         )
                 ));
     }
+
+    @DisplayName("최근 문제를 해결한 날짜와 해당 날짜의 해결한 문제의 개수를 불러온다.")
+    @Test
+    void getRecentlySolvedCount() throws Exception {
+        when(problemService.getRecentlySolvedCount()).thenReturn(RECENTLY_DATE_AND_COUNT());
+
+        ResultActions resultActions = mockMvc.perform(get("/api/problem/recently")
+                .contentType(MediaType.APPLICATION_JSON));
+
+        resultActions.andExpect(MockMvcResultMatchers.status().isOk())
+                .andDo(restDocs.document(
+                        responseFields(
+                                fieldWithPath("recentlySolvedCount.[]solvedCount")
+                                        .type(JsonFieldType.NUMBER)
+                                        .description("해당 날짜의 해결한 질문의 개수")
+                                        .attributes(field("constraint", "양의 정수")),
+                                fieldWithPath("recentlySolvedCount.[]completionDate")
+                                        .type(JsonFieldType.STRING)
+                                        .description("질문을 해결한 날짜")
+                                        .attributes(field("constraint", "날짜 형식의 문자열"))
+                        )
+                ));
+    }
 }

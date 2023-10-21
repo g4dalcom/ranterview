@@ -484,12 +484,12 @@ Host: localhost:8080</code></pre>
 <div class="content">
 <pre class="highlight nowrap"><code class="language-http" data-lang="http">HTTP/1.1 200 OK
 Content-Type: application/json;charset=UTF-8
-Content-Length: 74
+Content-Length: 75
 
 {
   "id" : 1,
-  "isSolved" : true,
-  "completionDate" : "2023-10-14"
+  "isSolved" : false,
+  "completionDate" : "2023-10-21"
 }</code></pre>
 </div>
 </div>
@@ -535,14 +535,14 @@ Content-Length: 332
   "question" : "모든 질문 1",
   "answer" : "답안",
   "isSolved" : false,
-  "completionDate" : "2023-10-14"
+  "completionDate" : "2023-10-21"
 }, {
   "id" : 2,
   "category" : "운영체제",
   "question" : "모든 질문 2",
   "answer" : "답안",
   "isSolved" : false,
-  "completionDate" : "2023-10-14"
+  "completionDate" : "2023-10-21"
 } ]</code></pre>
 </div>
 </div>
@@ -570,7 +570,7 @@ Content-Length: 160
   "question" : "모든 질문 1",
   "answer" : "답안",
   "isSolved" : false,
-  "completionDate" : "2023-10-14"
+  "completionDate" : "2023-10-21"
 }</code></pre>
 </div>
 </div>
@@ -599,15 +599,207 @@ Content-Length: 345
   "question" : "완료한 질문 1",
   "answer" : "답안",
   "isSolved" : true,
-  "completionDate" : "2023-10-14"
+  "completionDate" : "2023-10-21"
 }, {
   "id" : 4,
   "category" : "클라이언트",
   "question" : "완료한 질문 2",
   "answer" : "답안",
   "isSolved" : true,
-  "completionDate" : "2023-10-14"
+  "completionDate" : "2023-10-21"
 } ]</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_문제_등록_http_request">HTTP request</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight nowrap"><code class="language-http" data-lang="http">GET /api/problem/daily HTTP/1.1
+Content-Type: application/json;charset=UTF-8
+Host: localhost:8080</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_문제_등록_http_response">HTTP response</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight nowrap"><code class="language-http" data-lang="http">HTTP/1.1 200 OK
+Content-Type: application/json;charset=UTF-8
+Content-Length: 2235
+
+[ {
+  "id" : 1,
+  "category" : "서버",
+  "question" : "SERVER 해결한 질문",
+  "answer" : "SERVER 해결한 답안",
+  "isSolved" : true,
+  "completionDate" : "2023-10-18"
+}, {
+  "id" : 2,
+  "category" : "서버",
+  "question" : "SERVER 질문",
+  "answer" : "SERVER 답안",
+  "isSolved" : false,
+  "completionDate" : "2023-10-21"
+}, {
+  "id" : 3,
+  "category" : "클라이언트",
+  "question" : "CLIENT 해결한 질문",
+  "answer" : "CLIENT 해결한 답안",
+  "isSolved" : true,
+  "completionDate" : "2023-10-21"
+}, {
+  "id" : 4,
+  "category" : "클라이언트",
+  "question" : "CLIENT 질문",
+  "answer" : "CLIENT 답안",
+  "isSolved" : false,
+  "completionDate" : "2023-10-21"
+}, {
+  "id" : 5,
+  "category" : "네트워크",
+  "question" : "NETWORK 해결한 질문",
+  "answer" : "NETWORK 해결한 답안",
+  "isSolved" : true,
+  "completionDate" : "2023-10-18"
+}, {
+  "id" : 6,
+  "category" : "네트워크",
+  "question" : "NETWORK 질문",
+  "answer" : "NETWORK 답안",
+  "isSolved" : false,
+  "completionDate" : "2023-10-21"
+}, {
+  "id" : 7,
+  "category" : "운영체제",
+  "question" : "OS 해결한 질문",
+  "answer" : "OS 해결한 답안",
+  "isSolved" : true,
+  "completionDate" : "2023-10-20"
+}, {
+  "id" : 8,
+  "category" : "운영체제",
+  "question" : "OS 질문",
+  "answer" : "OS 답안",
+  "isSolved" : false,
+  "completionDate" : "2023-10-21"
+}, {
+  "id" : 9,
+  "category" : "자료구조",
+  "question" : "DATA_STRUCTURE 해결한 질문",
+  "answer" : "DATA_STRUCTURE 해결한 답안",
+  "isSolved" : true,
+  "completionDate" : "2023-10-15"
+}, {
+  "id" : 10,
+  "category" : "자료구조",
+  "question" : "DATA_STRUCTURE 질문",
+  "answer" : "DATA_STRUCTURE 답안",
+  "isSolved" : false,
+  "completionDate" : "2023-10-21"
+}, {
+  "id" : 11,
+  "category" : "엔지니어링",
+  "question" : "ENGINEERING 해결한 질문",
+  "answer" : "ENGINEERING 해결한 답안",
+  "isSolved" : true,
+  "completionDate" : "2023-10-17"
+}, {
+  "id" : 12,
+  "category" : "엔지니어링",
+  "question" : "ENGINEERING 질문",
+  "answer" : "ENGINEERING 답안",
+  "isSolved" : false,
+  "completionDate" : "2023-10-21"
+} ]</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_문제_등록_http_request">HTTP request</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight nowrap"><code class="language-http" data-lang="http">GET /api/problem/count HTTP/1.1
+Content-Type: application/json;charset=UTF-8
+Host: localhost:8080</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_문제_등록_http_response">HTTP response</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight nowrap"><code class="language-http" data-lang="http">HTTP/1.1 200 OK
+Content-Type: application/json;charset=UTF-8
+Content-Length: 503
+
+{
+  "problemCount" : [ {
+    "count" : 2,
+    "category" : "SERVER",
+    "solved" : 1
+  }, {
+    "count" : 2,
+    "category" : "CLIENT",
+    "solved" : 1
+  }, {
+    "count" : 2,
+    "category" : "NETWORK",
+    "solved" : 1
+  }, {
+    "count" : 2,
+    "category" : "OS",
+    "solved" : 1
+  }, {
+    "count" : 2,
+    "category" : "DATA_STRUCTURE",
+    "solved" : 1
+  }, {
+    "count" : 2,
+    "category" : "ENGINEERING",
+    "solved" : 1
+  } ],
+  "total" : 12,
+  "solved" : 6
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_문제_등록_http_request">HTTP request</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight nowrap"><code class="language-http" data-lang="http">GET /api/problem/recently HTTP/1.1
+Content-Type: application/json;charset=UTF-8
+Host: localhost:8080</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_문제_등록_http_response">HTTP response</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight nowrap"><code class="language-http" data-lang="http">HTTP/1.1 200 OK
+Content-Type: application/json;charset=UTF-8
+Content-Length: 310
+
+{
+  "recentlySolvedCount" : [ {
+    "solvedCount" : 1,
+    "completionDate" : "2023-10-15"
+  }, {
+    "solvedCount" : 7,
+    "completionDate" : "2023-10-21"
+  }, {
+    "solvedCount" : 3,
+    "completionDate" : "2023-10-18"
+  }, {
+    "solvedCount" : 1,
+    "completionDate" : "2023-10-17"
+  } ]
+}</code></pre>
 </div>
 </div>
 </div>
@@ -617,7 +809,7 @@ Content-Length: 345
 <div id="footer">
 <div id="footer-text">
 Version 0.0.1-SNAPSHOT<br>
-Last updated 2023-10-14 09:13:32 +0900
+Last updated 2023-10-21 22:21:53 +0900
 </div>
 </div>
 </body>
