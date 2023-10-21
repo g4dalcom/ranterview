@@ -317,4 +317,51 @@ class ProblemControllerTest extends ControllerTest {
                         )
                 ));
     }
+
+    @DisplayName("캘린더 데이터: 질문을 해결한 날짜와 해당 날짜의 해결한 질문의 수, 그리고 질문 데이터 리스트를 불러온다.")
+    @Test
+    void getCalendarData() throws Exception {
+        when(problemService.getSolvedDates()).thenReturn(CALENDAR_DATA());
+
+        ResultActions resultActions = mockMvc.perform(get("/api/problem/calendar")
+                .contentType(MediaType.APPLICATION_JSON));
+
+        resultActions.andExpect(MockMvcResultMatchers.status().isOk())
+                .andDo(restDocs.document(
+                        responseFields(
+                                fieldWithPath("[]dateInfo.completionDate")
+                                        .type(JsonFieldType.STRING)
+                                        .description("질문을 해결한 날짜")
+                                        .attributes(field("constraint", "날짜 형식의 문자열")),
+                                fieldWithPath("[]dateInfo.solvedCount")
+                                        .type(JsonFieldType.NUMBER)
+                                        .description("해당 날짜의 해결한 질문의 개수")
+                                        .attributes(field("constraint", "양의 정수")),
+                                fieldWithPath("[]problems.[]id")
+                                        .type(JsonFieldType.NUMBER)
+                                        .description("질문 고유 번호")
+                                        .attributes(field("constraint", "양의 정수")),
+                                fieldWithPath("[]problems.[]category")
+                                        .type(JsonFieldType.STRING)
+                                        .description("문제유형")
+                                        .attributes(field("constraint", "문자열")),
+                                fieldWithPath("[]problems.[]question")
+                                        .type(JsonFieldType.STRING)
+                                        .description("문제")
+                                        .attributes(field("constraint", "문자열")),
+                                fieldWithPath("[]problems.[]answer")
+                                        .type(JsonFieldType.STRING)
+                                        .description("답안")
+                                        .attributes(field("constraint", "문자열")),
+                                fieldWithPath("[]problems.[]solved")
+                                        .type(JsonFieldType.BOOLEAN)
+                                        .description("해결여부")
+                                        .attributes(field("constraint", "불리언")),
+                                fieldWithPath("[]problems.[]completionDate")
+                                        .type(JsonFieldType.STRING)
+                                        .description("완료일자")
+                                        .attributes(field("constraint", "날짜 형식의 문자열"))
+                        )
+                ));
+    }
 }

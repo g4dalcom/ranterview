@@ -21,11 +21,11 @@ public record ProblemDto() {
     }
 
     @Builder
-    public record Response(Long id, String category, String question, String answer, boolean isSolved, LocalDate completionDate) {
+    public record Response(Long id, Category category, String question, String answer, boolean isSolved, LocalDate completionDate) {
         public static Response of(Problem problem) {
             return Response.builder()
                     .id(problem.getId())
-                    .category(problem.getCategory().getDescription())
+                    .category(problem.getCategory())
                     .question(problem.getQuestion())
                     .answer(problem.getAnswer())
                     .isSolved(problem.isSolved())

@@ -8,3 +8,4 @@ operation::problem-controller-test/get-solved-problems[snippets="http-request,ht
 operation::problem-controller-test/get-daily-problems[snippets="http-request,http-response"]
 operation::problem-controller-test/get-problem-count[snippets="http-request,http-response"]
 operation::problem-controller-test/get-recently-solved-count[snippets="http-request,http-response"]
+operation::problem-controller-test/get-calendar-data[snippets="http-request,http-response"]

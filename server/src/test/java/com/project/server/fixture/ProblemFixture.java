@@ -4,6 +4,7 @@ import com.project.server.domain.Category;
 import com.project.server.domain.Problem;
 import com.project.server.dto.ProblemCountDto;
 import com.project.server.dto.ProblemDto;
+import com.project.server.dto.ProblemSolvedDatesDto;
 import com.project.server.dto.RecentlySolvedCountDto;
 import com.project.server.repository.ProblemCount;
 import com.project.server.repository.ProblemSolvedDate;
@@ -70,13 +71,47 @@ public class ProblemFixture {
 
     public static RecentlySolvedCountDto RECENTLY_DATE_AND_COUNT() {
         List<ProblemDto.Response> problemList = PROBLEMS_INCLUDES_ALL_CATEGORIES();
+        List<ProblemSolvedDate> dateList = new ArrayList<>();
+
+        create_date_info(problemList, dateList);
+
+        return new RecentlySolvedCountDto(dateList);
+    }
+
+    public static List<ProblemSolvedDatesDto> CALENDAR_DATA() {
+        ArrayList<ProblemSolvedDatesDto> dataList = new ArrayList<>();
+
+        List<ProblemDto.Response> problemList = PROBLEMS_INCLUDES_ALL_CATEGORIES();
+        List<ProblemSolvedDate> dateList = new ArrayList<>();
+
+        create_date_info(problemList, dateList);
+
+        for (ProblemSolvedDate d : dateList) {
+            List<Problem> problems = new ArrayList<>();
+            for (ProblemDto.Response problem : problemList) {
+                if (problem.completionDate().equals(d.getCompletionDate())) {
+                    problems.add(Problem.builder()
+                            .id(problem.id())
+                            .category(problem.category())
+                            .question(problem.question())
+                            .answer(problem.answer())
+                            .completionDate(problem.completionDate())
+                            .build());
+                }
+            }
+            dataList.add(new ProblemSolvedDatesDto(d, problems));
+        }
+
+        return dataList;
+    }
+
+    public static void create_date_info(List<ProblemDto.Response> problemList, List<ProblemSolvedDate> dateList) {
         HashMap<LocalDate, Long> map = new HashMap<>();
 
         for (ProblemDto.Response response : problemList) {
             map.put(response.completionDate(), map.getOrDefault(response.completionDate(), 0L) + 1L);
         }
 
-        List<ProblemSolvedDate> dateList = new ArrayList<>();
         ProjectionFactory factory = new SpelAwareProxyProjectionFactory();
         for (LocalDate key : map.keySet()) {
             ProblemSolvedDate problemSolvedDate = factory.createProjection(ProblemSolvedDate.class);
@@ -85,7 +120,5 @@ public class ProblemFixture {
 
             dateList.add(problemSolvedDate);
         }
-
-        return new RecentlySolvedCountDto(dateList);
     }
 }
